@@ -672,6 +672,11 @@ h3 {
   color: #ffd99a;
 }
 
+.store-card .status-badge-featured {
+  background: rgba(17, 82, 112, 0.94);
+  color: #b8efff;
+}
+
 .store-card-body {
   position: relative;
   z-index: 2;
@@ -989,7 +994,7 @@ h3 {
   text-underline-offset: 3px;
 }
 
-/* 关键模块：World of Eggs 使用 Steam 式媒体滑动页，但保持 OpenNice 自有视觉与清晰归属。 */
+/* 关键模块：Steam 游戏详情页使用媒体滑动栏，同时保持 OpenNice 自有视觉与清晰归属。 */
 .store-detail-page {
   padding-block: clamp(48px, 6vw, 80px) 96px;
 }
@@ -1192,6 +1197,20 @@ h3 {
   text-transform: uppercase;
 }
 
+.free-to-play-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0 10px;
+  border: 1px solid rgba(158, 211, 75, 0.42);
+  background: rgba(98, 153, 32, 0.16);
+  color: #c7f58b;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
 .store-summary-text {
   margin: 17px 0 0;
   color: #c3d2dc;
@@ -1304,6 +1323,14 @@ h3 {
   border-color: rgba(255, 196, 92, 0.23);
   background:
     linear-gradient(135deg, rgba(181, 105, 13, 0.12), transparent 58%),
+    #111e2b;
+}
+
+/* 关键模块：正式发行信息沿用提示卡布局，并用冷色区别于抢先体验状态。 */
+.release-panel {
+  border-color: rgba(98, 201, 255, 0.25);
+  background:
+    linear-gradient(135deg, rgba(45, 152, 210, 0.14), transparent 58%),
     #111e2b;
 }
 

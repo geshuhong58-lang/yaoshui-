@@ -8,16 +8,16 @@
     <title>All Browser Games &amp; Indie Spotlights | OpenNice</title>
     <meta
       name="description"
-      content="Browse five playable browser games and discover World of Eggs: Idle Adventures, a free-to-play Steam Early Access release."
+      content="Browse four playable browser games plus detailed Steam spotlights for Marvel Rivals and World of Eggs: Idle Adventures."
     >
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://opennice.online/catalog.html">
     <meta name="theme-color" content="#0b141f">
     <meta property="og:type" content="website">
     <meta property="og:title" content="All Browser Games &amp; Indie Spotlights">
-    <meta property="og:description" content="Five playable web games and one Steam Early Access spotlight.">
+    <meta property="og:description" content="Four playable web games and two official-source Steam spotlights.">
     <meta property="og:url" content="https://opennice.online/catalog.html">
-    <meta property="og:image" content="https://opennice.online/assets/covers/poker-quest.png">
+    <meta property="og:image" content="https://opennice.online/assets/marvel-rivals/trailer-poster.jpg">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script src="site.js" defer></script>
@@ -75,7 +75,7 @@
           <h1>All games.<br><span>One clean list.</span></h1>
         </div>
         <p>
-          Explore every title currently featured on OpenNice. Five games play directly
+          Explore every title currently featured on OpenNice. Four games play directly
           in your browser; Steam spotlights open their official store pages.
         </p>
       </section>
@@ -94,6 +94,9 @@
             <button class="filter-button" type="button" data-filter="trading" aria-pressed="false">Trading</button>
             <button class="filter-button" type="button" data-filter="casual" aria-pressed="false">Casual</button>
             <button class="filter-button" type="button" data-filter="arcade" aria-pressed="false">Arcade</button>
+            <button class="filter-button" type="button" data-filter="action" aria-pressed="false">Action</button>
+            <button class="filter-button" type="button" data-filter="pvp" aria-pressed="false">PVP</button>
+            <button class="filter-button" type="button" data-filter="co-op" aria-pressed="false">Co-op</button>
             <button class="filter-button" type="button" data-filter="early-access" aria-pressed="false">Early Access</button>
           </div>
         </div>
@@ -131,19 +134,26 @@
             <a class="game-card-link" href="world-of-eggs.html" aria-label="View World of Eggs: Idle Adventures details"></a>
           </article>
 
-          <article class="catalog-row preview-host" data-game-item data-title="clicker heroes idle progression" data-genre="idle" data-preview="">
+          <!-- 关键模块：Marvel Rivals 目录入口展示官方媒体与多标签，但明确进入 Steam 详情页。 -->
+          <article
+            class="catalog-row preview-host"
+            data-game-item
+            data-title="marvel rivals team based pvp hero shooter action multiplayer online co-op free to play"
+            data-genre="action pvp co-op free-to-play"
+            data-preview=""
+          >
             <div class="catalog-cover">
-              <img src="assets/covers/clicker-heroes.png" alt="Clicker Heroes official game screenshot" width="1259" height="661" fetchpriority="high">
+              <img src="assets/marvel-rivals/trailer-poster.jpg" alt="Marvel Rivals official launch trailer artwork" width="599" height="337" fetchpriority="high">
               <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
             </div>
             <div class="catalog-row-copy">
-              <p class="store-card-platform">Browser · Official embed</p>
-              <h3>Clicker Heroes</h3>
-              <div class="tag-list"><span>Idle</span><span>Progression</span></div>
+              <p class="store-card-platform">Steam · Free to play</p>
+              <h3>Marvel Rivals</h3>
+              <div class="tag-list"><span>Action</span><span>PVP</span><span>Co-op</span></div>
             </div>
-            <p class="catalog-description">Recruit heroes and turn steady progress into enormous upgrades.</p>
-            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
-            <a class="game-card-link" href="clicker-heroes.html" aria-label="Play Clicker Heroes online"></a>
+            <p class="catalog-description">Combine Marvel powers and fight as a team across destructible online battlefields.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>VIEW DETAILS</strong></div>
+            <a class="game-card-link" href="marvel-rivals.html" aria-label="View Marvel Rivals details"></a>
           </article>
 
           <article class="catalog-row preview-host" data-game-item data-title="mr mine idle management mining" data-genre="idle" data-preview="">
@@ -215,10 +225,11 @@
 
       <aside class="catalog-note page-shell">
         <strong>Rights notice:</strong>
-        The playable browser games are developed by
+        The four playable browser games are developed by
         <a href="https://playsaurus.com" target="_blank">Playsaurus</a>;
-        World of Eggs is developed and published by SQRT Games. OpenNice is an independent
-        portal and does not claim to have created or to own any featured game.
+        Marvel Rivals is developed and published by NetEase Games; World of Eggs is
+        developed and published by SQRT Games. OpenNice is an independent portal and
+        does not claim to have created or to own any featured game.
       </aside>
     </main>
 

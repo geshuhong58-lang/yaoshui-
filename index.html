@@ -8,7 +8,7 @@
     <title>Free Browser Games &amp; Indie Game Spotlights | OpenNice</title>
     <meta
       name="description"
-      content="Play free browser games and discover indie releases on OpenNice, including Clicker Heroes and World of Eggs: Idle Adventures."
+      content="Play free browser games and discover curated releases on OpenNice, including Marvel Rivals and World of Eggs: Idle Adventures."
     >
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://opennice.online/">
@@ -19,10 +19,10 @@
     <meta property="og:title" content="Free Browser Games &amp; Indie Game Spotlights">
     <meta
       property="og:description"
-      content="Five playable browser games plus a Steam Early Access spotlight."
+      content="Four playable browser games plus two detailed Steam game spotlights."
     >
     <meta property="og:url" content="https://opennice.online/">
-    <meta property="og:image" content="https://opennice.online/assets/covers/clicker-heroes.png">
+    <meta property="og:image" content="https://opennice.online/assets/marvel-rivals/trailer-poster.jpg">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -51,7 +51,7 @@
         "name": "Games on OpenNice",
         "numberOfItems": 6,
         "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Clicker Heroes","url":"https://opennice.online/clicker-heroes.html"},
+          {"@type":"ListItem","position":1,"name":"Marvel Rivals","url":"https://opennice.online/marvel-rivals.html"},
           {"@type":"ListItem","position":2,"name":"Mr. Mine","url":"https://opennice.online/mr-mine.html"},
           {"@type":"ListItem","position":3,"name":"Poker Quest","url":"https://opennice.online/poker-quest.html"},
           {"@type":"ListItem","position":4,"name":"Grindcraft","url":"https://opennice.online/grindcraft.html"},
@@ -94,7 +94,7 @@
     </header>
 
     <main id="main-content">
-      <!-- 关键模块：Steam 式横向主推荐位；只展示封面，不位于任何 iframe 前方。 -->
+      <!-- 关键模块：Steam 式横向主推荐位；展示 Marvel Rivals 官方媒体并进入独立详情页。 -->
       <section id="featured" class="featured-section page-shell" aria-labelledby="home-title">
         <div class="section-label-row">
           <p class="section-label">Featured &amp; recommended</p>
@@ -104,35 +104,35 @@
         <article class="featured-spotlight">
           <div class="featured-media preview-host" data-preview="">
             <img
-              src="assets/covers/clicker-heroes.png"
-              alt="Clicker Heroes official game screenshot"
-              width="1259"
-              height="661"
+              src="assets/marvel-rivals/trailer-poster.jpg"
+              alt="Marvel Rivals official launch trailer artwork"
+              width="599"
+              height="337"
               fetchpriority="high"
             >
             <!-- 关键模块：未来视频预览容器。data-preview 为空时不会请求任何视频。 -->
             <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-            <a class="media-link" href="clicker-heroes.html" aria-label="Play Clicker Heroes online"></a>
-            <span class="featured-badge">Editor’s pick</span>
+            <a class="media-link" href="marvel-rivals.html" aria-label="Explore Marvel Rivals"></a>
+            <span class="featured-badge">Featured release</span>
           </div>
 
           <div class="featured-copy">
-            <p class="eyebrow">Official browser edition</p>
-            <h1 id="home-title">Play bigger.<br><span>Download nothing.</span></h1>
-            <h2>Clicker Heroes</h2>
+            <p class="eyebrow">Free-to-play team PVP</p>
+            <h1 id="home-title">Choose your hero.<br><span>Rewrite the fight.</span></h1>
+            <h2>Marvel Rivals</h2>
             <p>
-              Recruit heroes, push through new zones and turn one more upgrade into
-              an entire evening of progress.
+              Assemble an all-star Marvel squad, combine powers into Team-Up
+              abilities and battle across destructible, ever-changing arenas.
             </p>
             <div class="tag-list" role="list" aria-label="Game categories">
-              <span>Idle</span><span>Progression</span><span>Single-player</span>
+              <span>Team PVP</span><span>Hero Shooter</span><span>Free to Play</span>
             </div>
             <div class="featured-meta">
-              <div><small>Availability</small><strong>Play free</strong></div>
-              <div><small>Platform</small><strong>Web browser</strong></div>
+              <div><small>Availability</small><strong>Free to play</strong></div>
+              <div><small>Platform</small><strong>Windows · Steam</strong></div>
             </div>
-            <a class="button button-primary" href="clicker-heroes.html">
-              Play Clicker Heroes <span aria-hidden="true">→</span>
+            <a class="button button-primary" href="marvel-rivals.html">
+              Explore Marvel Rivals <span aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -237,9 +237,9 @@
           </div>
         </div>
         <div class="category-grid">
-          <a href="catalog.html?genre=idle"><span>01</span><strong>Idle worlds</strong><small>Four games</small></a>
+          <a href="catalog.html?genre=idle"><span>01</span><strong>Idle worlds</strong><small>Three games</small></a>
           <a href="catalog.html?genre=strategy"><span>02</span><strong>Smart plays</strong><small>Two games</small></a>
-          <a href="catalog.html?genre=mmo"><span>03</span><strong>Shared worlds</strong><small>One game</small></a>
+          <a href="catalog.html?genre=pvp"><span>03</span><strong>Team combat</strong><small>One game</small></a>
           <a href="catalog.html?genre=arcade"><span>04</span><strong>Quick action</strong><small>One game</small></a>
         </div>
       </section>
@@ -247,12 +247,14 @@
       <section id="developer" class="developer-panel page-shell" aria-labelledby="developer-title">
         <div>
           <p class="section-kicker">Independent portal · Official sources</p>
-          <h2 id="developer-title">Built by indie studios.<br>Curated by OpenNice.</h2>
+          <h2 id="developer-title">Built by game studios.<br>Curated by OpenNice.</h2>
         </div>
         <div class="developer-copy">
           <p>
-            The five playable browser games are developed by
+            The four playable browser games are developed by
             <a href="https://playsaurus.com" target="_blank"><strong>Playsaurus</strong></a>.
+            <a href="marvel-rivals.html"><strong>Marvel Rivals</strong></a> is developed and
+            published by NetEase Games, while
             <a href="world-of-eggs.html"><strong>World of Eggs</strong></a> is developed and
             published by SQRT Games. OpenNice is an independent portal and does not claim
             ownership of any featured game.

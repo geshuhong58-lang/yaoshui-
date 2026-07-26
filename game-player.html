@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="styles.css">
 
     <script>
-      // 关键模块：只允许跳转到站内五个固定页面，避免把用户带到未经审核的地址。
+      // 关键模块：只允许跳转到站内六个固定详情页，避免把用户带到未经审核的地址。
       const gamePages = {
-        "clicker-heroes": "clicker-heroes.html",
+        "marvel-rivals": "marvel-rivals.html",
         "mr-mine": "mr-mine.html",
         "poker-quest": "poker-quest.html",
         "grindcraft": "grindcraft.html",
-        "fray-fight": "fray-fight.html"
+        "fray-fight": "fray-fight.html",
+        "world-of-eggs": "world-of-eggs.html"
       };
 
       // 关键模块：读取旧链接中的 game 参数；无匹配时返回安全的游戏目录。
