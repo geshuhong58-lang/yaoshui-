@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 关键模块：OpenNice 本地站点图标，避免浏览器请求不存在的 favicon.ico。 -->
+  <rect width="64" height="64" rx="18" fill="#101218"/>
+  <rect x="11" y="12" width="18" height="18" rx="5" transform="rotate(45 20 21)" fill="#ffd60a"/>
+  <rect x="35" y="12" width="18" height="18" rx="5" transform="rotate(45 44 21)" fill="#30d158"/>
+  <path d="M32 36 47 54H17Z" fill="#0a84ff"/>
+</svg>

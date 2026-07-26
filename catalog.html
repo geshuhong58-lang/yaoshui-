@@ -4,1176 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 关键模块：多游戏首页的 SEO 元数据；正式替换首页时 canonical 可继续使用根域名。 -->
-    <title>Play Free Fashion & Puzzle Games Online | OpenNice</title>
+    <!-- 关键模块：游戏目录页 SEO 元数据。 -->
+    <title>All Browser Games &amp; Indie Spotlights | OpenNice</title>
     <meta
       name="description"
-      content="Play free fashion, dress-up and puzzle games online on OpenNice. Enjoy six hand-picked HTML5 games instantly on desktop or mobile."
+      content="Browse five playable browser games and discover World of Eggs: Idle Adventures, a free-to-play Steam Early Access release."
     >
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://opennice.online/">
-    <meta name="theme-color" content="#07111f">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ccircle cx='19' cy='19' r='8' fill='%23ff9f0a'/%3E%3Ccircle cx='45' cy='19' r='8' fill='%2330d158'/%3E%3Ccircle cx='45' cy='45' r='8' fill='%230a84ff'/%3E%3C/svg%3E">
+    <link rel="canonical" href="https://opennice.online/catalog.html">
+    <meta name="theme-color" content="#0b141f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="All Browser Games &amp; Indie Spotlights">
+    <meta property="og:description" content="Five playable web games and one Steam Early Access spotlight.">
+    <meta property="og:url" content="https://opennice.online/catalog.html">
+    <meta property="og:image" content="https://opennice.online/assets/covers/poker-quest.png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="site.js" defer></script>
 
-    <style>
-      :root {
-        --night: #07111f;
-        --night-soft: #0d1a2c;
-        --panel: rgba(15, 29, 48, 0.82);
-        --panel-strong: #12233a;
-        --line: rgba(255, 255, 255, 0.11);
-        --text: #f7f9ff;
-        --muted: #a8b4c8;
-        --blue: #0a84ff;
-        --cyan: #64d2ff;
-        --green: #30d158;
-        --orange: #ff9f0a;
-        --pink: #ff375f;
-        --purple: #bf5af2;
-        --card-radius: 22px;
-        --page-width: 1540px;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        color-scheme: dark;
-        scroll-behavior: smooth;
-      }
-
-      body {
-        min-width: 320px;
-        margin: 0;
-        overflow-x: hidden;
-        background:
-          radial-gradient(circle at 10% -10%, rgba(10, 132, 255, 0.28), transparent 32rem),
-          radial-gradient(circle at 90% 12%, rgba(191, 90, 242, 0.2), transparent 30rem),
-          var(--night);
-        color: var(--text);
-        font-family: "Avenir Next", "SF Pro Rounded", "Trebuchet MS", sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      body::before {
-        position: fixed;
-        z-index: -1;
-        inset: 0;
-        opacity: 0.14;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: linear-gradient(to bottom, black, transparent 82%);
-        content: "";
-        pointer-events: none;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button,
-      input {
-        font: inherit;
-      }
-
-      button,
-      a,
-      input {
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .screen-reader-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-        white-space: nowrap;
-      }
-
-      /* 关键模块：固定玻璃导航，包含品牌、搜索和快捷入口。 */
-      .site-header {
-        position: sticky;
-        z-index: 100;
-        top: 0;
-        padding: 14px 20px 0;
-      }
-
-      .nav-shell {
-        display: grid;
-        grid-template-columns: auto minmax(240px, 700px) auto;
-        align-items: center;
-        gap: 24px;
-        width: min(var(--page-width), 100%);
-        min-height: 66px;
-        margin: 0 auto;
-        padding: 9px 11px 9px 18px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 22px;
-        background: rgba(7, 17, 31, 0.72);
-        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
-        backdrop-filter: blur(24px) saturate(160%);
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        min-width: max-content;
-        font-size: 18px;
-        font-weight: 850;
-        letter-spacing: -0.045em;
-      }
-
-      .brand-mark {
-        position: relative;
-        display: grid;
-        width: 34px;
-        height: 34px;
-        place-items: center;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 11px;
-        background:
-          radial-gradient(circle at 25% 28%, var(--orange) 0 13%, transparent 14%),
-          radial-gradient(circle at 72% 28%, var(--green) 0 13%, transparent 14%),
-          radial-gradient(circle at 72% 72%, var(--blue) 0 13%, transparent 14%),
-          #111827;
-        box-shadow: inset 0 1px rgba(255, 255, 255, 0.14);
-      }
-
-      .search {
-        position: relative;
-        width: 100%;
-      }
-
-      .search svg {
-        position: absolute;
-        top: 50%;
-        left: 17px;
-        width: 18px;
-        color: #9dabbe;
-        transform: translateY(-50%);
-        pointer-events: none;
-      }
-
-      .search input {
-        width: 100%;
-        min-height: 46px;
-        padding: 0 48px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        outline: 0;
-        border-radius: 15px;
-        background: rgba(255, 255, 255, 0.07);
-        color: var(--text);
-        font-size: 15px;
-        transition:
-          border-color 180ms ease,
-          background 180ms ease,
-          box-shadow 180ms ease;
-      }
-
-      .search input::placeholder {
-        color: #8896aa;
-      }
-
-      .search input:focus {
-        border-color: rgba(100, 210, 255, 0.55);
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.15);
-      }
-
-      .search-shortcut {
-        position: absolute;
-        top: 50%;
-        right: 12px;
-        padding: 3px 7px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 7px;
-        color: #8f9cb0;
-        font-size: 11px;
-        transform: translateY(-50%);
-      }
-
-      .nav-action {
-        display: inline-grid;
-        width: 46px;
-        height: 46px;
-        place-items: center;
-        border: 0;
-        border-radius: 15px;
-        background: var(--text);
-        color: var(--night);
-        cursor: pointer;
-        transition:
-          transform 180ms ease,
-          box-shadow 180ms ease;
-      }
-
-      .nav-action:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba(255, 255, 255, 0.14);
-      }
-
-      .nav-action svg {
-        width: 19px;
-      }
-
-      main {
-        width: min(var(--page-width), calc(100% - 40px));
-        margin: 0 auto;
-        padding: 70px 0 80px;
-      }
-
-      /* 关键模块：较短的门户首屏，让用户尽快看到游戏而不是大段宣传。 */
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        gap: 48px;
-        padding: 34px 8px 44px;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        margin-bottom: 18px;
-        color: var(--cyan);
-        font-size: 12px;
-        font-weight: 850;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      .eyebrow::before {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--green);
-        box-shadow: 0 0 0 6px rgba(48, 209, 88, 0.13);
-        content: "";
-      }
-
-      h1 {
-        max-width: 920px;
-        margin: 0;
-        font-size: clamp(46px, 6vw, 88px);
-        font-weight: 850;
-        letter-spacing: -0.065em;
-        line-height: 0.92;
-      }
-
-      h1 span {
-        background: linear-gradient(100deg, #ffffff 10%, var(--cyan) 52%, #c99cff 96%);
-        background-clip: text;
-        color: transparent;
-      }
-
-      .hero p {
-        max-width: 680px;
-        margin: 24px 0 0;
-        color: var(--muted);
-        font-size: clamp(16px, 1.8vw, 20px);
-        font-weight: 560;
-        line-height: 1.6;
-      }
-
-      .hero-stats {
-        display: flex;
-        gap: 12px;
-        padding-bottom: 8px;
-      }
-
-      .hero-stat {
-        min-width: 118px;
-        padding: 17px 18px;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.055);
-      }
-
-      .hero-stat strong,
-      .hero-stat span {
-        display: block;
-      }
-
-      .hero-stat strong {
-        font-size: 20px;
-        letter-spacing: -0.035em;
-      }
-
-      .hero-stat span {
-        margin-top: 3px;
-        color: #8f9cb0;
-        font-size: 11px;
-        font-weight: 750;
-        text-transform: uppercase;
-      }
-
-      /* 关键模块：分类筛选；按钮同时支持键盘和触屏。 */
-      .catalog-toolbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        margin: 0 8px 24px;
-      }
-
-      .filter-list {
-        display: flex;
-        gap: 9px;
-        overflow-x: auto;
-        padding: 3px;
-        scrollbar-width: none;
-      }
-
-      .filter-list::-webkit-scrollbar {
-        display: none;
-      }
-
-      .filter-button {
-        min-height: 38px;
-        padding: 0 16px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.045);
-        color: #aeb9ca;
-        font-size: 12px;
-        font-weight: 800;
-        white-space: nowrap;
-        cursor: pointer;
-        transition:
-          border-color 180ms ease,
-          background 180ms ease,
-          color 180ms ease;
-      }
-
-      .filter-button:hover {
-        border-color: rgba(255, 255, 255, 0.23);
-        color: var(--text);
-      }
-
-      .filter-button[aria-pressed="true"] {
-        border-color: rgba(100, 210, 255, 0.35);
-        background: rgba(10, 132, 255, 0.17);
-        color: #dff7ff;
-      }
-
-      .result-count {
-        color: #8290a5;
-        font-size: 12px;
-        font-weight: 750;
-        white-space: nowrap;
-      }
-
-      /* 关键模块：自适应高密度游戏网格；宽屏 5–6 列，手机端 2 列。 */
-      .game-grid {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .game-card {
-        position: relative;
-        min-width: 0;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: var(--card-radius);
-        background: var(--panel-strong);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-        isolation: isolate;
-        transform: translateZ(0);
-        transition:
-          transform 240ms cubic-bezier(0.2, 0.75, 0.25, 1),
-          border-color 240ms ease,
-          box-shadow 240ms ease;
-      }
-
-      .game-card::after {
-        position: absolute;
-        z-index: 4;
-        inset: 0;
-        border: 1px solid transparent;
-        border-radius: inherit;
-        background: linear-gradient(140deg, rgba(255, 255, 255, 0.35), transparent 28%, transparent 75%, rgba(100, 210, 255, 0.2)) border-box;
-        content: "";
-        mask:
-          linear-gradient(#fff 0 0) padding-box,
-          linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        pointer-events: none;
-      }
-
-      .game-card:hover,
-      .game-card:focus-within {
-        z-index: 5;
-        border-color: rgba(100, 210, 255, 0.4);
-        box-shadow:
-          0 26px 60px rgba(0, 0, 0, 0.38),
-          0 0 0 5px rgba(10, 132, 255, 0.08);
-        transform: translateY(-7px) scale(1.018);
-      }
-
-      .game-link {
-        display: block;
-        outline: 0;
-      }
-
-      .game-media {
-        position: relative;
-        aspect-ratio: 1;
-        overflow: hidden;
-        background: #101c2c;
-      }
-
-      .game-cover,
-      .game-preview {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        inset: 0;
-        object-fit: cover;
-      }
-
-      .game-cover {
-        z-index: 1;
-        transform: scale(1.002);
-        transition:
-          transform 520ms cubic-bezier(0.2, 0.75, 0.25, 1),
-          filter 260ms ease,
-          opacity 180ms ease;
-      }
-
-      .game-card:hover .game-cover,
-      .game-card:focus-within .game-cover {
-        filter: saturate(1.08) contrast(1.03);
-        transform: scale(1.065);
-      }
-
-      .game-preview {
-        z-index: 2;
-        display: none;
-        opacity: 0;
-        background: #09111d;
-        pointer-events: none;
-        transition: opacity 180ms ease;
-      }
-
-      .game-card.preview-ready .game-preview {
-        display: block;
-      }
-
-      .game-card.preview-playing .game-preview {
-        opacity: 1;
-      }
-
-      .game-card.preview-playing .game-cover {
-        opacity: 0;
-      }
-
-      .game-badge {
-        position: absolute;
-        z-index: 3;
-        top: 11px;
-        left: 11px;
-        padding: 7px 9px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 999px;
-        background: rgba(5, 13, 24, 0.68);
-        color: white;
-        font-size: 9px;
-        font-weight: 850;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        backdrop-filter: blur(10px);
-      }
-
-      .preview-status {
-        position: absolute;
-        z-index: 3;
-        top: 11px;
-        right: 11px;
-        display: none;
-        align-items: center;
-        gap: 5px;
-        padding: 7px 9px;
-        border-radius: 999px;
-        background: rgba(5, 13, 24, 0.68);
-        color: #e9f8ff;
-        font-size: 9px;
-        font-weight: 850;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        backdrop-filter: blur(10px);
-      }
-
-      .preview-status::before {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--green);
-        content: "";
-        box-shadow: 0 0 0 4px rgba(48, 209, 88, 0.14);
-      }
-
-      .game-card.preview-ready .preview-status {
-        display: inline-flex;
-      }
-
-      .play-disc {
-        position: absolute;
-        z-index: 3;
-        right: 12px;
-        bottom: 12px;
-        display: grid;
-        width: 42px;
-        height: 42px;
-        place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        border-radius: 50%;
-        background: rgba(247, 249, 255, 0.92);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        color: var(--night);
-        transform: translateY(8px) scale(0.9);
-        opacity: 0;
-        transition:
-          opacity 180ms ease,
-          transform 220ms cubic-bezier(0.2, 0.75, 0.25, 1);
-      }
-
-      .play-disc svg {
-        width: 15px;
-        margin-left: 2px;
-      }
-
-      .game-card:hover .play-disc,
-      .game-card:focus-within .play-disc {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-      .game-info {
-        position: relative;
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        min-height: 68px;
-        padding: 13px 14px 14px;
-        background: linear-gradient(180deg, rgba(18, 35, 58, 0.94), #102036);
-      }
-
-      .game-info > span:first-child {
-        min-width: 0;
-      }
-
-      .game-title {
-        display: block;
-        overflow: hidden;
-        font-size: 14px;
-        font-weight: 850;
-        letter-spacing: -0.025em;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .game-category {
-        display: block;
-        margin-top: 4px;
-        color: #8d9bb0;
-        font-size: 10px;
-        font-weight: 750;
-        letter-spacing: 0.045em;
-        text-transform: uppercase;
-      }
-
-      .game-device {
-        display: inline-flex;
-        flex: 0 0 auto;
-        align-items: center;
-        gap: 5px;
-        color: #8391a6;
-        font-size: 10px;
-        font-weight: 800;
-      }
-
-      .game-device svg {
-        width: 13px;
-      }
-
-      .game-card[hidden] {
-        display: none;
-      }
-
-      .empty-state {
-        display: none;
-        margin-top: 18px;
-        padding: 70px 24px;
-        border: 1px dashed rgba(255, 255, 255, 0.15);
-        border-radius: 24px;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      .empty-state.show {
-        display: block;
-      }
-
-      .empty-state strong {
-        display: block;
-        margin-bottom: 8px;
-        color: var(--text);
-        font-size: 20px;
-      }
-
-      .catalog-note {
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        margin-top: 28px;
-        padding: 16px 18px;
-        border: 1px solid var(--line);
-        border-radius: 17px;
-        background: rgba(255, 255, 255, 0.035);
-        color: #8d9bb0;
-        font-size: 12px;
-        line-height: 1.55;
-      }
-
-      .catalog-note svg {
-        flex: 0 0 auto;
-        width: 17px;
-        margin-top: 1px;
-        color: var(--cyan);
-      }
-
-      footer {
-        width: min(var(--page-width), calc(100% - 40px));
-        margin: 0 auto;
-        padding: 28px 0 44px;
-        border-top: 1px solid var(--line);
-        color: #78869a;
-        font-size: 12px;
-      }
-
-      .footer-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-      }
-
-      @media (min-width: 1720px) {
-        .game-grid {
-          grid-template-columns: repeat(6, minmax(0, 1fr));
-        }
-      }
-
-      @media (max-width: 1180px) {
-        .game-grid {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-
-        .hero {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-stats {
-          padding-bottom: 0;
-        }
-      }
-
-      @media (max-width: 860px) {
-        .nav-shell {
-          grid-template-columns: auto 1fr;
-          gap: 14px;
-        }
-
-        .nav-action {
-          display: none;
-        }
-
-        main {
-          padding-top: 44px;
-        }
-
-        .game-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 14px;
-        }
-
-        .hero-stats {
-          display: none;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .site-header {
-          padding: 8px 10px 0;
-        }
-
-        .nav-shell {
-          grid-template-columns: 1fr;
-          gap: 9px;
-          padding: 11px;
-          border-radius: 20px;
-        }
-
-        .brand {
-          justify-content: center;
-          font-size: 16px;
-        }
-
-        .brand-mark {
-          width: 29px;
-          height: 29px;
-          border-radius: 9px;
-        }
-
-        .search input {
-          min-height: 42px;
-        }
-
-        main {
-          width: min(100% - 20px, var(--page-width));
-          padding: 28px 0 56px;
-        }
-
-        .hero {
-          padding: 20px 4px 30px;
-        }
-
-        h1 {
-          font-size: clamp(40px, 13vw, 62px);
-          line-height: 0.94;
-        }
-
-        .hero p {
-          margin-top: 18px;
-          font-size: 15px;
-        }
-
-        .catalog-toolbar {
-          align-items: flex-end;
-          margin-inline: 0;
-        }
-
-        .filter-list {
-          margin-right: -10px;
-        }
-
-        .result-count {
-          display: none;
-        }
-
-        .game-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 10px;
-        }
-
-        .game-card {
-          border-radius: 17px;
-        }
-
-        .game-card:hover,
-        .game-card:focus-within {
-          transform: none;
-        }
-
-        .game-info {
-          min-height: 76px;
-          padding: 10px 11px 11px;
-        }
-
-        .game-title {
-          display: -webkit-box;
-          font-size: 11.5px;
-          line-height: 1.18;
-          text-overflow: clip;
-          white-space: normal;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-        }
-
-        .game-category {
-          margin-top: 3px;
-          font-size: 8px;
-        }
-
-        .game-device,
-        .play-disc,
-        .preview-status {
-          display: none !important;
-        }
-
-        .game-badge {
-          top: 8px;
-          left: 8px;
-          padding: 5px 7px;
-          font-size: 7px;
-        }
-
-        .catalog-note {
-          margin-top: 18px;
-        }
-
-        .footer-inner {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-      }
-
-      @media (hover: none), (pointer: coarse) {
-        .game-card:hover {
-          transform: none;
-        }
-
-        .play-disc,
-        .preview-status {
-          display: none !important;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-          scroll-behavior: auto !important;
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.01ms !important;
-        }
-
-        .game-preview {
-          display: none !important;
-        }
-      }
-    </style>
-
-    <!-- 关键模块：ItemList 结构化数据；正式加入游戏时同步追加条目。 -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Free Online Games on OpenNice",
-        "url": "https://opennice.online/",
-        "numberOfItems": 6,
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Potion Sort"},
-          {"@type": "ListItem", "position": 2, "name": "MycoThreeMemo"},
-          {"@type": "ListItem", "position": 3, "name": "Fashion Valkyries"},
-          {"@type": "ListItem", "position": 4, "name": "Sid & Ginny Y2K Glam Clash"},
-          {"@type": "ListItem", "position": 5, "name": "Romantic K-Pop Transformation"},
-          {"@type": "ListItem", "position": 6, "name": "Spring Magic Enchanted Wardrobe"}
-        ]
+        "@type": "CollectionPage",
+        "name": "OpenNice Game Library",
+        "url": "https://opennice.online/catalog.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "OpenNice",
+          "url": "https://opennice.online/"
+        }
       }
     </script>
   </head>
-
   <body>
+    <a class="skip-link" href="#game-list">Skip to games</a>
+
     <header class="site-header">
       <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="index.html" aria-label="OpenNice games home">
+        <a class="brand" href="index.html" aria-label="OpenNice home">
           <span class="brand-mark" aria-hidden="true"></span>
-          <span>OpenNice</span>
+          <span>OPENNICE</span>
         </a>
-
-        <form class="search" role="search" id="game-search">
-          <label class="screen-reader-only" for="search-input">Search games</label>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <input id="search-input" type="search" placeholder="Search games" autocomplete="off">
-          <span class="search-shortcut" aria-hidden="true">/</span>
-        </form>
-
-        <a class="nav-action" href="#games" aria-label="Browse games">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        <div class="nav-links">
+          <a href="index.html">Store</a>
+          <a href="catalog.html" aria-current="page">Library</a>
+          <a href="index.html#developer">About</a>
+        </div>
+        <p class="header-note"><span aria-hidden="true"></span> Browser &amp; indie games · No clutter</p>
       </nav>
+
+      <div class="discovery-shell">
+        <nav class="discovery-links" aria-label="Discover games">
+          <a href="index.html#featured">Featured</a>
+          <a href="#game-list">All games</a>
+          <a href="index.html#categories">Categories</a>
+        </nav>
+        <div class="header-search" role="search">
+          <label class="visually-hidden" for="catalog-search">Search games</label>
+          <input id="catalog-search" data-game-search type="search" placeholder="Search the library" autocomplete="off">
+          <button type="button" aria-label="Search" tabindex="-1">⌕</button>
+        </div>
+      </div>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="catalog-title">
+      <!-- 关键模块：目录标题维持唯一 H1，并给搜索和筛选留出明确入口。 -->
+      <section class="catalog-hero page-shell">
         <div>
-          <span class="eyebrow">Instant browser play</span>
-          <h1 id="catalog-title">Find your <span>next game.</span></h1>
-          <p>
-            Browse hand-picked HTML5 games and jump straight in—no install,
-            no download, and no account required.
-          </p>
+          <p class="eyebrow">The OpenNice library</p>
+          <h1>All games.<br><span>One clean list.</span></h1>
         </div>
-        <div class="hero-stats" aria-label="Catalog highlights">
-          <div class="hero-stat"><strong>6</strong><span>Games live</span></div>
-          <div class="hero-stat"><strong>Free</strong><span>Instant play</span></div>
-        </div>
-      </section>
-
-      <section id="games" aria-labelledby="games-heading">
-        <h2 class="screen-reader-only" id="games-heading">Browse free online games</h2>
-
-        <div class="catalog-toolbar">
-          <div class="filter-list" aria-label="Filter games by category">
-            <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All games</button>
-            <button class="filter-button" type="button" data-filter="puzzle" aria-pressed="false">Puzzle</button>
-            <button class="filter-button" type="button" data-filter="fashion" aria-pressed="false">Fashion</button>
-            <button class="filter-button" type="button" data-filter="dress-up" aria-pressed="false">Dress Up</button>
-          </div>
-          <span class="result-count" id="result-count" aria-live="polite">6 games</span>
-        </div>
-
-        <!--
-          关键模块：每张卡片通过 data-preview 绑定短视频。
-          示例：data-preview="assets/previews/potion-sort.webm"
-          当前所有预览路径保持为空，因此不会请求或播放视频。
-        -->
-        <div class="game-grid" id="game-grid">
-          <article class="game-card" data-title="Potion Sort" data-category="puzzle casual" data-preview="">
-            <a class="game-link" href="game-player.html?game=potion-sort" aria-label="Play Potion Sort">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/potion-sort.jpg" alt="Potion Sort game cover" width="512" height="384" fetchpriority="high">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">New</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg>
-                </span>
-              </div>
-              <div class="game-info">
-                <span>
-                  <span class="game-title">Potion Sort</span>
-                  <span class="game-category">Puzzle · Casual</span>
-                </span>
-                <span class="game-device" aria-label="Desktop and mobile">
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M10 17.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                  HTML5
-                </span>
-              </div>
-            </a>
-          </article>
-
-          <article class="game-card" data-title="MycoThreeMemo" data-category="puzzle" data-preview="">
-            <a class="game-link" href="game-player.html?game=myco-three-memo" aria-label="Play MycoThreeMemo">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/myco-three-memo.jpg" alt="MycoThreeMemo game cover" width="300" height="300" fetchpriority="high">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">Puzzle</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg></span>
-              </div>
-              <div class="game-info">
-                <span><span class="game-title">MycoThreeMemo</span><span class="game-category">Puzzle · Memory</span></span>
-                <span class="game-device">HTML5</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="game-card" data-title="Fashion Valkyries" data-category="fashion dress-up" data-preview="">
-            <a class="game-link" href="game-player.html?game=fashion-valkyries" aria-label="Play Fashion Valkyries">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/fashion-valkyries.jpg" alt="Fashion Valkyries game cover" width="300" height="300" loading="lazy">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">Nordic</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg></span>
-              </div>
-              <div class="game-info">
-                <span><span class="game-title">Fashion Valkyries</span><span class="game-category">Fashion · Dress Up</span></span>
-                <span class="game-device">HTML5</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="game-card" data-title="Sid &amp; Ginny Y2K Glam Clash" data-category="fashion dress-up" data-preview="">
-            <a class="game-link" href="game-player.html?game=sid-ginny-y2k-glam-clash" aria-label="Play Sid and Ginny Y2K Glam Clash">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/sid-ginny-y2k-glam-clash.jpg" alt="Sid and Ginny Y2K Glam Clash game cover" width="300" height="300" loading="lazy">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">Y2K</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg></span>
-              </div>
-              <div class="game-info">
-                <span><span class="game-title">Sid &amp; Ginny Y2K Glam Clash</span><span class="game-category">Fashion · Dress Up</span></span>
-                <span class="game-device">HTML5</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="game-card" data-title="Romantic K-Pop Transformation" data-category="fashion dress-up" data-preview="">
-            <a class="game-link" href="game-player.html?game=romantic-k-pop-transformation" aria-label="Play Romantic K-Pop Transformation">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/romantic-k-pop-transformation.jpg" alt="Romantic K-Pop Transformation game cover" width="300" height="300" loading="lazy">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">K-Pop</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg></span>
-              </div>
-              <div class="game-info">
-                <span><span class="game-title">Romantic K-Pop Transformation</span><span class="game-category">Fashion · Makeover</span></span>
-                <span class="game-device">HTML5</span>
-              </div>
-            </a>
-          </article>
-
-          <article class="game-card" data-title="Spring Magic Enchanted Wardrobe" data-category="fashion dress-up" data-preview="">
-            <a class="game-link" href="game-player.html?game=spring-magic-enchanted-wardrobe" aria-label="Play Spring Magic Enchanted Wardrobe">
-              <div class="game-media">
-                <img class="game-cover" src="assets/covers/spring-magic-enchanted-wardrobe.jpg" alt="Spring Magic Enchanted Wardrobe game cover" width="300" height="300" loading="lazy">
-                <video class="game-preview" muted loop playsinline preload="none"></video>
-                <span class="game-badge">Magic</span>
-                <span class="preview-status">Live preview</span>
-                <span class="play-disc" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.7v12.6c0 .9 1 1.5 1.8 1l9.5-6.3c.7-.5.7-1.5 0-2L9.8 4.7c-.8-.5-1.8 0-1.8 1Z"/></svg></span>
-              </div>
-              <div class="game-info">
-                <span><span class="game-title">Spring Magic Enchanted Wardrobe</span><span class="game-category">Fashion · Dress Up</span></span>
-                <span class="game-device">HTML5</span>
-              </div>
-            </a>
-          </article>
-        </div>
-
-        <div class="empty-state" id="empty-state">
-          <strong>No games found</strong>
-          Try a shorter title or choose another category.
-        </div>
-
-        <p class="catalog-note">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 10.5v5m0-8v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          Games load only after you choose a title and press Start. This keeps
-          the catalog fast and avoids loading third-party iframes while browsing.
+        <p>
+          Explore every title currently featured on OpenNice. Five games play directly
+          in your browser; Steam spotlights open their official store pages.
         </p>
       </section>
+
+      <section id="game-list" class="catalog-browser page-shell" aria-labelledby="collection-title">
+        <div class="catalog-toolbar">
+          <div>
+            <p class="section-kicker">Browse the collection</p>
+            <h2 id="collection-title">Six titles to explore</h2>
+          </div>
+          <div class="filter-row" role="group" aria-label="Filter games">
+            <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" data-filter="idle" aria-pressed="false">Idle</button>
+            <button class="filter-button" type="button" data-filter="strategy" aria-pressed="false">Strategy</button>
+            <button class="filter-button" type="button" data-filter="mmo" aria-pressed="false">MMO</button>
+            <button class="filter-button" type="button" data-filter="trading" aria-pressed="false">Trading</button>
+            <button class="filter-button" type="button" data-filter="casual" aria-pressed="false">Casual</button>
+            <button class="filter-button" type="button" data-filter="arcade" aria-pressed="false">Arcade</button>
+            <button class="filter-button" type="button" data-filter="early-access" aria-pressed="false">Early Access</button>
+          </div>
+        </div>
+
+        <p class="result-count" aria-live="polite">
+          <strong data-result-count>6</strong> <span data-result-label>titles</span> found
+        </p>
+
+        <div class="catalog-list">
+          <!-- 关键模块：World of Eggs 多标签目录条目，支持分类组合筛选。 -->
+          <article
+            class="catalog-row preview-host"
+            data-game-item
+            data-title="world of eggs idle adventures incremental strategy mmo trading casual early access"
+            data-genre="idle strategy mmo trading casual early-access"
+            data-preview=""
+          >
+            <div class="catalog-cover">
+              <img
+                src="assets/world-of-eggs/trailer-poster.jpg"
+                alt="World of Eggs: Idle Adventures official game artwork"
+                width="600"
+                height="337"
+                fetchpriority="high"
+              >
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Steam · Early Access</p>
+              <h3>World of Eggs: Idle Adventures</h3>
+              <div class="tag-list"><span>Idle</span><span>Strategy</span><span>MMO</span></div>
+            </div>
+            <p class="catalog-description">Build an egg civilization, automate production, trade with players and join strategic raids.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>VIEW DETAILS</strong></div>
+            <a class="game-card-link" href="world-of-eggs.html" aria-label="View World of Eggs: Idle Adventures details"></a>
+          </article>
+
+          <article class="catalog-row preview-host" data-game-item data-title="clicker heroes idle progression" data-genre="idle" data-preview="">
+            <div class="catalog-cover">
+              <img src="assets/covers/clicker-heroes.png" alt="Clicker Heroes official game screenshot" width="1259" height="661" fetchpriority="high">
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Browser · Official embed</p>
+              <h3>Clicker Heroes</h3>
+              <div class="tag-list"><span>Idle</span><span>Progression</span></div>
+            </div>
+            <p class="catalog-description">Recruit heroes and turn steady progress into enormous upgrades.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+            <a class="game-card-link" href="clicker-heroes.html" aria-label="Play Clicker Heroes online"></a>
+          </article>
+
+          <article class="catalog-row preview-host" data-game-item data-title="mr mine idle management mining" data-genre="idle" data-preview="">
+            <div class="catalog-cover">
+              <img src="assets/covers/mr-mine.png" alt="Mr. Mine official game screenshot" width="898" height="664">
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Browser · Official embed</p>
+              <h3>Mr. Mine</h3>
+              <div class="tag-list"><span>Idle</span><span>Management</span></div>
+            </div>
+            <p class="catalog-description">Dig deeper, manage resources and grow a mining operation.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+            <a class="game-card-link" href="mr-mine.html" aria-label="Play Mr. Mine online"></a>
+          </article>
+
+          <article class="catalog-row preview-host" data-game-item data-title="poker quest cards strategy roguelike" data-genre="strategy" data-preview="">
+            <div class="catalog-cover">
+              <img src="assets/covers/poker-quest.png" alt="Poker Quest official game screenshot" width="1313" height="922" loading="lazy">
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Browser · Official embed</p>
+              <h3>Poker Quest</h3>
+              <div class="tag-list"><span>Cards</span><span>Strategy</span></div>
+            </div>
+            <p class="catalog-description">Use card hands, equipment and careful choices to survive each run.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+            <a class="game-card-link" href="poker-quest.html" aria-label="Play Poker Quest online"></a>
+          </article>
+
+          <article class="catalog-row preview-host" data-game-item data-title="grindcraft crafting idle building" data-genre="idle" data-preview="">
+            <div class="catalog-cover">
+              <img src="assets/covers/grindcraft.png" alt="Grindcraft official game screenshot" width="1018" height="692" loading="lazy">
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Browser · Official embed</p>
+              <h3>Grindcraft</h3>
+              <div class="tag-list"><span>Crafting</span><span>Idle</span></div>
+            </div>
+            <p class="catalog-description">Gather, craft and unlock increasingly ambitious production chains.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+            <a class="game-card-link" href="grindcraft.html" aria-label="Play Grindcraft online"></a>
+          </article>
+
+          <article class="catalog-row preview-host" data-game-item data-title="fray fight arcade action upgrades" data-genre="arcade" data-preview="">
+            <div class="catalog-cover">
+              <img src="assets/covers/fray-fight.png" alt="Fray Fight official game screenshot" width="1080" height="678" loading="lazy">
+              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
+            </div>
+            <div class="catalog-row-copy">
+              <p class="store-card-platform">Browser · Official embed</p>
+              <h3>Fray Fight</h3>
+              <div class="tag-list"><span>Arcade</span><span>Upgrades</span></div>
+            </div>
+            <p class="catalog-description">Jump into a brisk action run and build a stronger setup as you fight.</p>
+            <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+            <a class="game-card-link" href="fray-fight.html" aria-label="Play Fray Fight online"></a>
+          </article>
+        </div>
+
+        <div class="empty-state" data-empty-state hidden>
+          <strong>No games found</strong>
+          <p>Try another title or choose a different category.</p>
+        </div>
+      </section>
+
+      <aside class="catalog-note page-shell">
+        <strong>Rights notice:</strong>
+        The playable browser games are developed by
+        <a href="https://playsaurus.com" target="_blank">Playsaurus</a>;
+        World of Eggs is developed and published by SQRT Games. OpenNice is an independent
+        portal and does not claim to have created or to own any featured game.
+      </aside>
     </main>
 
-    <footer>
-      <div class="footer-inner">
-        <a class="brand" href="index.html">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>OpenNice</span>
-        </a>
-        <span>Free browser games, beautifully simple.</span>
-        <span>© 2026 OpenNice</span>
+    <footer class="site-footer">
+      <div class="footer-shell">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span>OPENNICE</span></a>
+          <p>Good browser games, ready when you are.</p>
+        </div>
+        <p>
+          OpenNice is an independent portal. Games are loaded from official developer
+          servers and remain the property of their respective rights holders.
+        </p>
+        <div class="footer-links">
+          <a href="index.html">Store</a>
+          <a href="https://playsaurus.com" target="_blank">Playsaurus</a>
+          <a href="https://playsaurus.com/embed-our-games" target="_blank">Embed terms</a>
+        </div>
       </div>
     </footer>
-
-    <script>
-      // 关键模块：搜索与分类筛选只操作现有静态卡片，便于搜索引擎抓取游戏链接。
-      const searchForm = document.querySelector("#game-search");
-      const searchInput = document.querySelector("#search-input");
-      const filterButtons = [...document.querySelectorAll(".filter-button")];
-      const cards = [...document.querySelectorAll(".game-card")];
-      const resultCount = document.querySelector("#result-count");
-      const emptyState = document.querySelector("#empty-state");
-      let activeFilter = "all";
-
-      function updateCatalog() {
-        const query = searchInput.value.trim().toLowerCase();
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-          const title = card.dataset.title.toLowerCase();
-          const categories = card.dataset.category.split(" ");
-          const matchesSearch = title.includes(query);
-          const matchesFilter = activeFilter === "all" || categories.includes(activeFilter);
-          const shouldShow = matchesSearch && matchesFilter;
-
-          card.hidden = !shouldShow;
-          if (shouldShow) visibleCount += 1;
-        });
-
-        resultCount.textContent = `${visibleCount} ${visibleCount === 1 ? "game" : "games"}`;
-        emptyState.classList.toggle("show", visibleCount === 0);
-      }
-
-      searchForm.addEventListener("submit", (event) => event.preventDefault());
-      searchInput.addEventListener("input", updateCatalog);
-
-      filterButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          activeFilter = button.dataset.filter;
-          filterButtons.forEach((item) => {
-            item.setAttribute("aria-pressed", String(item === button));
-          });
-          updateCatalog();
-        });
-      });
-
-      // 关键模块：按 “/” 快速聚焦搜索框，但输入框内按键不会被截获。
-      document.addEventListener("keydown", (event) => {
-        const isTyping = ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName);
-        if (event.key === "/" && !isTyping) {
-          event.preventDefault();
-          searchInput.focus();
-        }
-      });
-
-      /*
-        关键模块：桌面端悬停 650ms 后才请求预览视频。
-        离开卡片会暂停并卸载视频，确保以后加入几十款游戏仍保持流畅。
-      */
-      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (canHover && !reduceMotion) {
-        cards.forEach((card) => {
-          const previewUrl = card.dataset.preview.trim();
-          const video = card.querySelector(".game-preview");
-          let hoverTimer = 0;
-
-          if (!previewUrl || !video) return;
-          card.classList.add("preview-ready");
-
-          const startPreview = () => {
-            window.clearTimeout(hoverTimer);
-            hoverTimer = window.setTimeout(async () => {
-              if (!video.src) {
-                video.src = previewUrl;
-                video.load();
-              }
-
-              try {
-                await video.play();
-                card.classList.add("preview-playing");
-              } catch (error) {
-                card.classList.remove("preview-playing");
-              }
-            }, 650);
-          };
-
-          const stopPreview = () => {
-            window.clearTimeout(hoverTimer);
-            card.classList.remove("preview-playing");
-            video.pause();
-            video.removeAttribute("src");
-            video.load();
-          };
-
-          card.addEventListener("mouseenter", startPreview);
-          card.addEventListener("mouseleave", stopPreview);
-          card.addEventListener("focusin", startPreview);
-          card.addEventListener("focusout", stopPreview);
-          video.addEventListener("error", () => {
-            card.classList.remove("preview-ready", "preview-playing");
-          });
-        });
-      }
-    </script>
   </body>
 </html>
