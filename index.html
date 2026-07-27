@@ -98,28 +98,135 @@
       <section id="featured" class="featured-section page-shell" aria-labelledby="home-title">
         <div class="section-label-row">
           <p class="section-label">Featured &amp; recommended</p>
-          <span>01 / 06</span>
+          <span>1 video · 6 screenshots</span>
         </div>
 
-        <article class="featured-spotlight">
-          <div class="featured-media preview-host" data-preview="">
-            <img
-              src="assets/marvel-rivals/trailer-poster.jpg"
-              alt="Marvel Rivals official launch trailer artwork"
-              width="599"
-              height="337"
-              fetchpriority="high"
-            >
-            <!-- 关键模块：未来视频预览容器。data-preview 为空时不会请求任何视频。 -->
-            <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-            <a class="media-link" href="marvel-rivals.html" aria-label="Explore Marvel Rivals"></a>
-            <span class="featured-badge">Featured release</span>
+        <!-- 关键模块：首页媒体展台。第一屏为真实视频，随后六张截图，并支持按钮、圆点、键盘和手机滑动切换。 -->
+        <article
+          class="featured-spotlight"
+          data-media-gallery
+          tabindex="0"
+          aria-label="Marvel Rivals official trailer and screenshot gallery"
+        >
+          <div class="featured-gallery">
+            <div class="featured-media-stage" data-media-stage>
+              <figure class="featured-media-slide is-active" data-media-slide>
+                <video
+                  controls
+                  muted
+                  playsinline
+                  preload="metadata"
+                  poster="assets/marvel-rivals/trailer-poster.jpg"
+                  aria-label="Marvel Rivals official launch trailer"
+                >
+                  <source src="assets/marvel-rivals/trailer.mp4" type="video/mp4">
+                  Your browser does not support HTML5 video.
+                </video>
+                <figcaption>Official launch trailer</figcaption>
+              </figure>
+
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-01.jpg"
+                  alt="Luna Snow using her abilities during a Marvel Rivals match"
+                  width="1920"
+                  height="1080"
+                >
+                <figcaption>Hero abilities in motion</figcaption>
+              </figure>
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-02.jpg"
+                  alt="Marvel heroes fighting together across a detailed team battlefield"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                >
+                <figcaption>Squad combat</figcaption>
+              </figure>
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-03.jpg"
+                  alt="A fast team battle featuring Marvel heroes and vivid ability effects"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                >
+                <figcaption>Team-Up powers</figcaption>
+              </figure>
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-04.jpg"
+                  alt="Marvel Rivals heroes combining powers in a destructible arena"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                >
+                <figcaption>Destructible arenas</figcaption>
+              </figure>
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-05.jpg"
+                  alt="Third-person Marvel Rivals combat across an evolving battlefield"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                >
+                <figcaption>Third-person action</figcaption>
+              </figure>
+              <figure class="featured-media-slide" data-media-slide hidden>
+                <img
+                  src="assets/marvel-rivals/screenshot-06.jpg"
+                  alt="A Marvel Rivals team preparing abilities during an online PVP match"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                >
+                <figcaption>Prepare your squad</figcaption>
+              </figure>
+
+              <span class="featured-badge">Featured release</span>
+              <button
+                class="featured-media-control featured-media-previous"
+                type="button"
+                data-media-previous
+                aria-label="Show previous media"
+              >
+                <span aria-hidden="true">‹</span>
+              </button>
+              <button
+                class="featured-media-control featured-media-next"
+                type="button"
+                data-media-next
+                aria-label="Show next media"
+              >
+                <span aria-hidden="true">›</span>
+              </button>
+              <p class="featured-media-count" aria-live="polite">
+                <span data-media-current>01</span><span>/ 07</span>
+              </p>
+            </div>
           </div>
 
           <div class="featured-copy">
+            <!-- 关键模块：收藏状态保存在当前浏览器，不需要账号也不会上传个人数据。 -->
+            <button
+              class="favorite-toggle featured-favorite"
+              type="button"
+              data-favorite
+              data-game-id="marvel-rivals"
+              data-game-name="Marvel Rivals"
+              aria-pressed="false"
+              aria-label="Save Marvel Rivals to favorites"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 2.7 2.86 5.8 6.4.93-4.63 4.51 1.1 6.38L12 17.31l-5.73 3.01 1.1-6.38-4.63-4.51 6.4-.93L12 2.7Z"></path>
+              </svg>
+              <span data-favorite-label>Save</span>
+            </button>
             <p class="eyebrow">Free-to-play team PVP</p>
-            <h1 id="home-title">Choose your hero.<br><span>Rewrite the fight.</span></h1>
-            <h2>Marvel Rivals</h2>
+            <h1 id="home-title">Marvel<br><span>Rivals</span></h1>
+            <h2>Choose your hero. Rewrite the fight.</h2>
             <p>
               Assemble an all-star Marvel squad, combine powers into Team-Up
               abilities and battle across destructible, ever-changing arenas.
@@ -134,6 +241,21 @@
             <a class="button button-primary" href="marvel-rivals.html">
               Explore Marvel Rivals <span aria-hidden="true">→</span>
             </a>
+          </div>
+
+          <!-- 关键模块：底部状态栏明确显示当前媒体位置，圆点可直接跳转。 -->
+          <div class="featured-media-nav">
+            <p class="featured-media-status" data-media-status aria-live="polite">Official launch trailer</p>
+            <div class="featured-dots" role="tablist" aria-label="Choose featured media">
+              <button class="featured-dot is-active" type="button" data-media-thumb data-media-label="Official launch trailer" role="tab" aria-selected="true" aria-label="Show official launch trailer"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Hero abilities in motion" role="tab" aria-selected="false" aria-label="Show screenshot 1"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Squad combat" role="tab" aria-selected="false" aria-label="Show screenshot 2"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Team-Up powers" role="tab" aria-selected="false" aria-label="Show screenshot 3"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Destructible arenas" role="tab" aria-selected="false" aria-label="Show screenshot 4"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Third-person action" role="tab" aria-selected="false" aria-label="Show screenshot 5"></button>
+              <button class="featured-dot" type="button" data-media-thumb data-media-label="Prepare your squad" role="tab" aria-selected="false" aria-label="Show screenshot 6"></button>
+            </div>
+            <p class="featured-media-hint">Arrow keys · swipe</p>
           </div>
         </article>
       </section>

@@ -70,14 +70,18 @@
   document.querySelectorAll("[data-media-gallery]").forEach((gallery) => {
     const slides = [...gallery.querySelectorAll("[data-media-slide]")];
     const thumbnails = [...gallery.querySelectorAll("[data-media-thumb]")];
+    const dots = [...gallery.querySelectorAll("[data-media-dot]")];
     const previousButton = gallery.querySelector("[data-media-previous]");
     const nextButton = gallery.querySelector("[data-media-next]");
     const currentNumber = gallery.querySelector("[data-media-current]");
+    const mediaStatus = gallery.querySelector("[data-media-status]");
     const stage = gallery.querySelector("[data-media-stage]");
     let activeIndex = 0;
     let touchStartX = null;
 
-    if (!slides.length || slides.length !== thumbnails.length) return;
+    if (!slides.length) return;
+    if (thumbnails.length && slides.length !== thumbnails.length) return;
+    if (dots.length && slides.length !== dots.length) return;
 
     const showSlide = (requestedIndex, shouldScrollThumbnail = true) => {
       activeIndex = (requestedIndex + slides.length) % slides.length;
@@ -95,10 +99,26 @@
         const isActive = index === activeIndex;
         thumbnail.classList.toggle("is-active", isActive);
         thumbnail.setAttribute("aria-selected", String(isActive));
+        thumbnail.tabIndex = isActive ? 0 : -1;
+      });
+
+      dots.forEach((dot, index) => {
+        const isActive = index === activeIndex;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-selected", String(isActive));
+        dot.tabIndex = isActive ? 0 : -1;
       });
 
       if (currentNumber) currentNumber.textContent = String(activeIndex + 1).padStart(2, "0");
-      if (shouldScrollThumbnail) {
+      if (mediaStatus) {
+        const control = thumbnails[activeIndex] || dots[activeIndex];
+        const slideCaption = slides[activeIndex].querySelector("figcaption");
+        mediaStatus.textContent =
+          control?.dataset.mediaLabel ||
+          slideCaption?.textContent.trim() ||
+          `Media ${activeIndex + 1}`;
+      }
+      if (shouldScrollThumbnail && thumbnails[activeIndex]?.classList.contains("media-thumbnail")) {
         thumbnails[activeIndex].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
       }
     };
@@ -107,10 +127,15 @@
       thumbnail.addEventListener("click", () => showSlide(index));
     });
 
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => showSlide(index, false));
+    });
+
     previousButton?.addEventListener("click", () => showSlide(activeIndex - 1));
     nextButton?.addEventListener("click", () => showSlide(activeIndex + 1));
 
     gallery.addEventListener("keydown", (event) => {
+      if (event.target.closest("video")) return;
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
       showSlide(activeIndex + (event.key === "ArrowRight" ? 1 : -1));
@@ -140,6 +165,68 @@
 
     showSlide(0, false);
   });
+})();
+
+/* 关键模块：轻量收藏系统。收藏只写入浏览器 localStorage，并在同一页面的按钮间实时同步。 */
+(() => {
+  const favoriteButtons = [...document.querySelectorAll("[data-favorite][data-game-id]")];
+  if (!favoriteButtons.length) return;
+
+  const storageKey = "opennice:favorites:v1";
+
+  const readFavorites = () => {
+    try {
+      const savedItems = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+      return new Set(Array.isArray(savedItems) ? savedItems : []);
+    } catch {
+      return new Set();
+    }
+  };
+
+  const writeFavorites = (favorites) => {
+    try {
+      window.localStorage.setItem(storageKey, JSON.stringify([...favorites]));
+    } catch {
+      /* Safari 私密模式等环境可能禁用存储；按钮在当前点击中仍会给出反馈。 */
+    }
+  };
+
+  let favorites = readFavorites();
+
+  const renderFavoriteButtons = () => {
+    favoriteButtons.forEach((button) => {
+      const isSaved = favorites.has(button.dataset.gameId);
+      const label = button.querySelector("[data-favorite-label]");
+      button.classList.toggle("is-active", isSaved);
+      button.setAttribute("aria-pressed", String(isSaved));
+      button.setAttribute(
+        "aria-label",
+        `${isSaved ? "Remove" : "Save"} ${button.dataset.gameName || "this game"} ${isSaved ? "from" : "to"} favorites`
+      );
+      if (label) label.textContent = isSaved ? "Saved" : "Save";
+    });
+  };
+
+  favoriteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const gameId = button.dataset.gameId;
+      if (favorites.has(gameId)) {
+        favorites.delete(gameId);
+      } else {
+        favorites.add(gameId);
+      }
+      writeFavorites(favorites);
+      renderFavoriteButtons();
+    });
+  });
+
+  window.addEventListener("storage", (event) => {
+    if (event.key !== storageKey) return;
+    favorites = readFavorites();
+    renderFavoriteButtons();
+  });
+
+  renderFavoriteButtons();
 })();
 
 /* 关键模块：悬停视频预览预留接口。只有 data-preview 有地址时才加载视频。 */

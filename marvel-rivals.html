@@ -168,9 +168,35 @@
               <img src="assets/marvel-rivals/screenshot-06.jpg" alt="" width="1920" height="1080" loading="lazy">
             </button>
           </div>
+
+          <!-- 关键模块：圆点与上方缩略图保持同步，让用户能立即判断当前位置。 -->
+          <div class="media-dots" role="tablist" aria-label="Choose media by position">
+            <button class="media-dot is-active" type="button" data-media-dot role="tab" aria-selected="true" aria-label="Show official launch trailer"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 1"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 2"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 3"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 4"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 5"></button>
+            <button class="media-dot" type="button" data-media-dot role="tab" aria-selected="false" aria-label="Show screenshot 6"></button>
+          </div>
         </div>
 
         <aside class="store-summary" aria-label="Game summary">
+          <!-- 关键模块：收藏状态会与首页同步并保存在本机浏览器。 -->
+          <button
+            class="favorite-toggle store-summary-favorite"
+            type="button"
+            data-favorite
+            data-game-id="marvel-rivals"
+            data-game-name="Marvel Rivals"
+            aria-pressed="false"
+            aria-label="Save Marvel Rivals to favorites"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 2.7 2.86 5.8 6.4.93-4.63 4.51 1.1 6.38L12 17.31l-5.73 3.01 1.1-6.38-4.63-4.51 6.4-.93L12 2.7Z"></path>
+            </svg>
+            <span data-favorite-label>Save</span>
+          </button>
           <img class="store-summary-cover" src="assets/marvel-rivals/cover.jpg" alt="Marvel Rivals official Steam cover" width="460" height="215">
           <div class="store-summary-body">
             <span class="free-to-play-chip">Free to play</span>
