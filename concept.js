@@ -205,6 +205,20 @@ function restartGalleryProgress() {
   galleryProgress.classList.add("is-running");
 }
 
+/* 关键模块：只在滑动栏内部横向定位缩略图，避免自动轮播把整页拉回首屏。 */
+function revealThumbnailHorizontally(button) {
+  const thumbnailTrack = button.closest(".thumbnail-track");
+  if (!thumbnailTrack) {
+    return;
+  }
+
+  const centeredLeft = button.offsetLeft - (thumbnailTrack.clientWidth - button.offsetWidth) / 2;
+  thumbnailTrack.scrollTo({
+    left: Math.max(0, centeredLeft),
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+  });
+}
+
 /* 关键模块：一次性同步背景、标题、简介、详情链接、收藏按钮和滑动栏状态。 */
 function selectFeaturedGame(index, options = {}) {
   const normalizedIndex = (index + featuredGames.length) % featuredGames.length;
@@ -231,11 +245,7 @@ function selectFeaturedGame(index, options = {}) {
     button.classList.toggle("is-active", isCurrent);
     if (isCurrent) {
       button.setAttribute("aria-current", "true");
-      button.scrollIntoView({
-        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-        block: "nearest",
-        inline: "nearest"
-      });
+      revealThumbnailHorizontally(button);
     } else {
       button.removeAttribute("aria-current");
     }
