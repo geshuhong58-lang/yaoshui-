@@ -28,9 +28,9 @@
   <link rel="icon" href="favicon.svg?v=20260728c" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20260728c">
   <!-- 关键模块：样式版本号避免 Cloudflare 长缓存造成新版 HTML 搭配旧版 CSS。 -->
-  <link rel="stylesheet" href="concept.css?v=20260728c">
+  <link rel="stylesheet" href="concept.css?v=20260728d">
 
-  <!-- 关键模块：结构化数据帮助搜索引擎理解站点与十七款游戏的关系。 -->
+  <!-- 关键模块：结构化数据帮助搜索引擎理解十四款在线游戏与两款下载游戏的关系。 -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -205,12 +205,12 @@
           <div class="slide-counter" aria-live="polite">
             <span id="currentSlideLabel">01</span>
             <span aria-hidden="true">/</span>
-            <span>07</span>
+            <span id="totalSlideLabel">02</span>
           </div>
         </div>
 
         <div class="hero-copy">
-          <p class="hero-kicker">Free team PVP · Steam</p>
+          <p class="hero-kicker">Free team PVP · Steam download</p>
           <h1 id="hero-title">Marvel<br><em>Rivals</em></h1>
           <p class="hero-description">
             Assemble an all-star Marvel squad, combine powers into Team-Up abilities,
@@ -222,8 +222,8 @@
             <span>Released Dec 6, 2024</span>
           </div>
           <div class="hero-actions">
-            <a class="button button--primary" href="marvel-rivals.html">
-              Explore Marvel Rivals
+            <a class="button button--primary" id="heroPrimaryAction" href="marvel-rivals.html">
+              <span id="heroPrimaryLabel">View Marvel Rivals</span>
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
             </a>
             <button class="button button--ghost" id="playTrailerButton" type="button" aria-pressed="false">
@@ -240,66 +240,38 @@
           <span>Save</span>
         </button>
 
-        <button class="media-arrow media-arrow--previous" id="previousMedia" type="button" aria-label="Previous media">
+        <button class="media-arrow media-arrow--previous" id="previousMedia" type="button" aria-label="Previous downloadable game">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>
         </button>
-        <button class="media-arrow media-arrow--next" id="nextMedia" type="button" aria-label="Next media">
+        <button class="media-arrow media-arrow--next" id="nextMedia" type="button" aria-label="Next downloadable game">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
         </button>
 
-        <!-- 关键模块：底部媒体导航同时服务鼠标、键盘与触屏，视频入口明确标注。 -->
-        <div class="media-dock" aria-label="Marvel Rivals media gallery">
-          <div class="thumbnail-track" id="thumbnailTrack">
-            <button class="media-thumbnail" type="button" data-media-index="0" aria-label="Play official trailer">
+        <!-- 关键模块：滑动栏只收纳需要下载安装的 Steam 游戏，与下方在线游戏明确分区。 -->
+        <div class="media-dock" aria-label="Downloadable Steam game carousel">
+          <div class="thumbnail-track thumbnail-track--games" id="thumbnailTrack">
+            <button class="media-thumbnail media-thumbnail--game is-active" type="button" data-feature-index="0" aria-label="Show Marvel Rivals" aria-current="true">
               <img src="assets/marvel-rivals/trailer-poster.jpg" alt="" width="599" height="337" loading="lazy" decoding="async">
-              <span class="thumbnail-play" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5V7Z"/></svg>
-              </span>
-              <span>Trailer</span>
+              <span>Marvel Rivals</span>
             </button>
-            <button class="media-thumbnail" type="button" data-media-index="1" aria-label="Show screenshot 1">
-              <img src="assets/marvel-rivals/screenshot-01.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Luna Snow</span>
-            </button>
-            <button class="media-thumbnail" type="button" data-media-index="2" aria-label="Show screenshot 2">
-              <img src="assets/marvel-rivals/screenshot-02.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Team play</span>
-            </button>
-            <button class="media-thumbnail is-active" type="button" data-media-index="3" aria-label="Show screenshot 3" aria-current="true">
-              <img src="assets/marvel-rivals/screenshot-03.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Rivalry</span>
-            </button>
-            <button class="media-thumbnail" type="button" data-media-index="4" aria-label="Show screenshot 4">
-              <img src="assets/marvel-rivals/screenshot-04.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Arena</span>
-            </button>
-            <button class="media-thumbnail" type="button" data-media-index="5" aria-label="Show screenshot 5">
-              <img src="assets/marvel-rivals/screenshot-05.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Combat</span>
-            </button>
-            <button class="media-thumbnail" type="button" data-media-index="6" aria-label="Show screenshot 6">
-              <img src="assets/marvel-rivals/screenshot-06.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
-              <span>Heroes</span>
+            <button class="media-thumbnail media-thumbnail--game" type="button" data-feature-index="1" aria-label="Show World of Eggs: Idle Adventures">
+              <img src="assets/world-of-eggs/trailer-poster.jpg" alt="" width="599" height="337" loading="lazy" decoding="async">
+              <span>World of Eggs</span>
             </button>
           </div>
 
           <div class="media-dock-footer">
-            <p class="media-status" id="mediaStatus" aria-live="polite">Rivalry · Screenshot 3</p>
-            <div class="media-dots" id="mediaDots" aria-label="Choose media">
-              <button type="button" data-dot-index="0" aria-label="Media 1"></button>
-              <button type="button" data-dot-index="1" aria-label="Media 2"></button>
-              <button type="button" data-dot-index="2" aria-label="Media 3"></button>
-              <button class="is-active" type="button" data-dot-index="3" aria-label="Media 4" aria-current="true"></button>
-              <button type="button" data-dot-index="4" aria-label="Media 5"></button>
-              <button type="button" data-dot-index="5" aria-label="Media 6"></button>
-              <button type="button" data-dot-index="6" aria-label="Media 7"></button>
+            <p class="media-status" id="mediaStatus" aria-live="polite">Marvel Rivals · Steam download</p>
+            <div class="media-dots" id="mediaDots" aria-label="Choose downloadable game">
+              <button class="is-active" type="button" data-feature-dot-index="0" aria-label="Game 1: Marvel Rivals" aria-current="true"></button>
+              <button type="button" data-feature-dot-index="1" aria-label="Game 2: World of Eggs"></button>
             </div>
           </div>
           <div class="gallery-progress" aria-hidden="true"><span id="galleryProgress"></span></div>
         </div>
       </section>
 
-      <!-- 关键模块：真实游戏素材组成可横向扩展的内容轨道，适合后续持续上架游戏。 -->
+      <!-- 关键模块：此处只保留无需下载安装、可在浏览器中直接启动的游戏。 -->
       <section class="library-section" id="library" aria-labelledby="library-title">
         <div class="section-heading">
           <div>
@@ -307,50 +279,12 @@
             <h2 id="library-title">Play something remarkable</h2>
           </div>
           <div class="section-controls">
-            <span id="visibleGameCount">16 games</span>
+            <span id="visibleGameCount">14 games</span>
             <button class="text-button" id="showAllGames" type="button">View all</button>
           </div>
         </div>
 
         <div class="game-grid" id="gameGrid">
-          <article class="game-card game-card--wide" data-category="pvp" data-search="marvel rivals pvp team shooter free" data-href="marvel-rivals.html" tabindex="0">
-            <div class="game-art">
-              <img src="assets/marvel-rivals/screenshot-04.jpg" alt="Marvel Rivals heroes in battle" width="1920" height="1080">
-              <span class="card-rank">01</span>
-              <span class="card-badge">Featured</span>
-              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
-              <button class="card-save" type="button" aria-label="Save Marvel Rivals" aria-pressed="false" data-save-game="Marvel Rivals">
-                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
-              </button>
-            </div>
-            <div class="game-card-copy">
-              <div>
-                <h3><a href="marvel-rivals.html">Marvel Rivals</a></h3>
-                <p>Team PVP · Free to play</p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">↗</span>
-            </div>
-          </article>
-
-          <article class="game-card" data-category="idle strategy" data-search="world of eggs idle adventures strategy mmo trading early access" data-href="world-of-eggs.html" tabindex="0">
-            <div class="game-art">
-              <img src="assets/world-of-eggs/trailer-poster.jpg" alt="World of Eggs: Idle Adventures artwork" width="599" height="337" loading="lazy">
-              <span class="card-rank">02</span>
-              <span class="card-badge card-badge--lime">Early access</span>
-              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
-              <button class="card-save" type="button" aria-label="Save World of Eggs" aria-pressed="false" data-save-game="World of Eggs">
-                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
-              </button>
-            </div>
-            <div class="game-card-copy">
-              <div>
-                <h3><a href="world-of-eggs.html">World of Eggs</a></h3>
-                <p>Idle MMO · Trading</p>
-              </div>
-              <span class="card-arrow" aria-hidden="true">↗</span>
-            </div>
-          </article>
-
           <article class="game-card" data-category="idle strategy" data-search="mr mine idle mining strategy playsaurus" data-href="mr-mine.html" tabindex="0">
             <div class="game-art">
               <img src="assets/covers/mr-mine.png" alt="Mr. Mine game artwork" width="898" height="664" loading="lazy">
@@ -472,6 +406,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <!-- 关键模块：先加载审核后的游戏数据，再初始化首页交互。 -->
   <script src="browser-games.js?v=20260728b"></script>
-  <script src="concept.js?v=20260728b"></script>
+  <script src="concept.js?v=20260728c"></script>
 </body>
 </html>

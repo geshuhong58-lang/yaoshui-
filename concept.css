@@ -678,6 +678,13 @@ svg {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.76);
 }
 
+/* 关键模块：长标题使用独立字号，避免《World of Eggs》在桌面和手机端挤压操作区。 */
+.hero.hero--long-title h1 {
+  max-width: 12ch;
+  font-size: clamp(3.15rem, 5.5vw, 6.4rem);
+  line-height: 0.82;
+}
+
 .hero-description {
   max-width: 54ch;
   margin: 1.55rem 0 0;
@@ -879,6 +886,11 @@ svg {
   display: none;
 }
 
+.thumbnail-track--games {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: row;
+}
+
 .media-thumbnail {
   position: relative;
   min-width: 76px;
@@ -926,6 +938,19 @@ svg {
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.media-thumbnail--game {
+  min-width: 0;
+  aspect-ratio: 16 / 7;
+}
+
+.media-thumbnail--game > span:last-child {
+  right: 0.55rem;
+  bottom: 0.5rem;
+  left: 0.55rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.025em;
 }
 
 .thumbnail-play {
@@ -1008,7 +1033,7 @@ svg {
 }
 
 .gallery-progress span.is-running {
-  animation: gallery-progress 7.2s linear forwards;
+  animation: gallery-progress 8.5s linear forwards;
 }
 
 .hero.is-gallery-paused .gallery-progress span {
@@ -1670,6 +1695,11 @@ svg {
     font-size: clamp(4.2rem, 15vw, 7rem);
   }
 
+  .hero.hero--long-title h1 {
+    max-width: 11ch;
+    font-size: clamp(3.3rem, 11.5vw, 5.8rem);
+  }
+
   .favorite-button {
     top: 7.4rem;
     right: 1.15rem;
@@ -1807,8 +1837,21 @@ svg {
     margin-bottom: 4.5rem;
   }
 
+  .hero-kicker {
+    max-width: 32ch;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+  }
+
   .hero h1 {
     font-size: clamp(3.55rem, 17vw, 5.3rem);
+  }
+
+  .hero.hero--long-title h1 {
+    max-width: 10ch;
+    font-size: clamp(2.75rem, 12.8vw, 4.25rem);
+    line-height: 0.86;
   }
 
   .hero-description {
@@ -1833,6 +1876,15 @@ svg {
 
   .thumbnail-track {
     grid-auto-columns: 84px;
+  }
+
+  .thumbnail-track--games {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: initial;
+  }
+
+  .media-thumbnail--game > span:last-child {
+    font-size: 0.56rem;
   }
 
   .media-dots {

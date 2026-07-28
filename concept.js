@@ -69,15 +69,38 @@ function renderImportedBrowserGames() {
 
 renderImportedBrowserGames();
 
-/* 关键模块：媒体数据只引用 OpenNice 已有的本地官方素材，避免外部图库和额外请求。 */
-const mediaItems = [
-  { type: "video", label: "Official launch trailer" },
-  { type: "image", label: "Luna Snow", src: "assets/marvel-rivals/screenshot-01.jpg" },
-  { type: "image", label: "Team play", src: "assets/marvel-rivals/screenshot-02.jpg" },
-  { type: "image", label: "Rivalry", src: "assets/marvel-rivals/screenshot-03.jpg" },
-  { type: "image", label: "Arena", src: "assets/marvel-rivals/screenshot-04.jpg" },
-  { type: "image", label: "Combat", src: "assets/marvel-rivals/screenshot-05.jpg" },
-  { type: "image", label: "Heroes", src: "assets/marvel-rivals/screenshot-06.jpg" }
+/* 关键模块：顶部滑动栏仅展示需要 Steam 下载安装的游戏，与在线即玩游戏完全分离。 */
+const featuredGames = [
+  {
+    title: "Marvel Rivals",
+    titleMarkup: "Marvel<br><em>Rivals</em>",
+    kicker: "Free team PVP · Steam download",
+    description:
+      "Assemble an all-star Marvel squad, combine powers into Team-Up abilities, and reshape destructible battlefields in fast 6v6 matches.",
+    meta: ["Free to play", "Windows · Steam", "Released Dec 6, 2024"],
+    detailUrl: "marvel-rivals.html",
+    actionLabel: "View Marvel Rivals",
+    backdrop: "assets/marvel-rivals/screenshot-03.jpg",
+    poster: "assets/marvel-rivals/trailer-poster.jpg",
+    video: "assets/marvel-rivals/trailer.mp4",
+    status: "Marvel Rivals · Steam download",
+    usesLongTitle: false
+  },
+  {
+    title: "World of Eggs",
+    titleMarkup: "World of Eggs:<br><em>Idle Adventures</em>",
+    kicker: "Idle strategy MMO · Steam Early Access",
+    description:
+      "Build an egg civilization, automate production, trade with other players, and join raids in a growing idle strategy MMO.",
+    meta: ["Free to play", "Windows · Steam", "Early Access Jul 24, 2026"],
+    detailUrl: "world-of-eggs.html",
+    actionLabel: "View World of Eggs",
+    backdrop: "assets/world-of-eggs/screenshot-01.jpg",
+    poster: "assets/world-of-eggs/trailer-poster.jpg",
+    video: "assets/world-of-eggs/trailer.mp4",
+    status: "World of Eggs · Steam Early Access",
+    usesLongTitle: true
+  }
 ];
 
 const storageKey = "opennice-saved-games";
@@ -86,13 +109,20 @@ const hero = document.querySelector(".hero");
 const heroImage = document.querySelector("#heroImage");
 const heroVideo = document.querySelector("#heroVideo");
 const heroVideoSource = document.querySelector("#heroVideoSource");
+const heroKicker = document.querySelector(".hero-kicker");
+const heroTitle = document.querySelector("#hero-title");
+const heroDescription = document.querySelector(".hero-description");
+const heroMeta = document.querySelector(".hero-meta");
+const heroPrimaryAction = document.querySelector("#heroPrimaryAction");
+const heroPrimaryLabel = document.querySelector("#heroPrimaryLabel");
 const playTrailerButton = document.querySelector("#playTrailerButton");
 const trailerButtonLabel = document.querySelector("#trailerButtonLabel");
 const currentSlideLabel = document.querySelector("#currentSlideLabel");
+const totalSlideLabel = document.querySelector("#totalSlideLabel");
 const mediaStatus = document.querySelector("#mediaStatus");
 const galleryProgress = document.querySelector("#galleryProgress");
-const thumbnailButtons = [...document.querySelectorAll("[data-media-index]")];
-const dotButtons = [...document.querySelectorAll("[data-dot-index]")];
+const thumbnailButtons = [...document.querySelectorAll("[data-feature-index]")];
+const dotButtons = [...document.querySelectorAll("[data-feature-dot-index]")];
 const heroFavorite = document.querySelector("#heroFavorite");
 const cardSaveButtons = [...document.querySelectorAll("[data-save-game]")];
 const savedCount = document.querySelector("#savedCount");
@@ -104,7 +134,7 @@ const emptyState = document.querySelector("#emptyState");
 const toast = document.querySelector("#toast");
 const topbar = document.querySelector(".topbar");
 
-let currentMediaIndex = 3;
+let currentFeaturedIndex = 0;
 let galleryTimer = null;
 let toastTimer = null;
 let currentCategory = "all";
@@ -145,9 +175,20 @@ function setTrailerButtonState(isPlaying) {
   trailerButtonLabel.textContent = isPlaying ? "Pause trailer" : "Play trailer";
 }
 
-/* 关键模块：首屏不下载大视频，只有用户主动播放时才注入视频地址。 */
+/* 关键模块：切换游戏时卸载上一段视频，避免手机端在后台同时下载多个大文件。 */
+function prepareFeaturedVideo(game) {
+  heroVideo.pause();
+  heroVideo.classList.remove("is-active");
+  heroVideoSource.removeAttribute("src");
+  heroVideoSource.dataset.src = game.video;
+  heroVideo.poster = game.poster;
+  heroVideo.load();
+  setTrailerButtonState(false);
+}
+
+/* 关键模块：首屏不下载大视频，只有用户主动播放时才注入当前游戏的视频地址。 */
 function ensureVideoLoaded() {
-  if (heroVideoSource.src) {
+  if (heroVideoSource.getAttribute("src")) {
     return;
   }
   heroVideoSource.src = heroVideoSource.dataset.src;
@@ -158,27 +199,43 @@ function restartGalleryProgress() {
   galleryProgress.classList.remove("is-running");
   void galleryProgress.offsetWidth;
 
-  if (prefersReducedMotion.matches || document.hidden || currentMediaIndex === 0) {
+  if (prefersReducedMotion.matches || document.hidden || !heroVideo.paused) {
     return;
   }
   galleryProgress.classList.add("is-running");
 }
 
-/* 关键模块：统一处理视频、图片、缩略图和分页点的联动状态。 */
-function selectMedia(index, options = {}) {
-  const normalizedIndex = (index + mediaItems.length) % mediaItems.length;
-  const media = mediaItems[normalizedIndex];
-  currentMediaIndex = normalizedIndex;
+/* 关键模块：一次性同步背景、标题、简介、详情链接、收藏按钮和滑动栏状态。 */
+function selectFeaturedGame(index, options = {}) {
+  const normalizedIndex = (index + featuredGames.length) % featuredGames.length;
+  const game = featuredGames[normalizedIndex];
+  currentFeaturedIndex = normalizedIndex;
+
+  prepareFeaturedVideo(game);
+  heroKicker.textContent = game.kicker;
+  heroTitle.innerHTML = game.titleMarkup;
+  heroDescription.textContent = game.description;
+  heroMeta.innerHTML = game.meta.map((item) => `<span>${item}</span>`).join("");
+  heroPrimaryAction.href = game.detailUrl;
+  heroPrimaryLabel.textContent = game.actionLabel;
+  heroFavorite.dataset.saveGame = game.title;
+  heroFavorite.setAttribute("aria-label", `Save ${game.title}`);
+  hero.classList.toggle("hero--long-title", game.usesLongTitle);
+
   currentSlideLabel.textContent = formatIndex(normalizedIndex);
-  mediaStatus.textContent =
-    media.type === "video" ? media.label : `${media.label} · Screenshot ${normalizedIndex}`;
+  totalSlideLabel.textContent = String(featuredGames.length).padStart(2, "0");
+  mediaStatus.textContent = game.status;
 
   thumbnailButtons.forEach((button, buttonIndex) => {
     const isCurrent = buttonIndex === normalizedIndex;
     button.classList.toggle("is-active", isCurrent);
     if (isCurrent) {
       button.setAttribute("aria-current", "true");
-      button.scrollIntoView({ behavior: prefersReducedMotion.matches ? "auto" : "smooth", block: "nearest", inline: "nearest" });
+      button.scrollIntoView({
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+        block: "nearest",
+        inline: "nearest"
+      });
     } else {
       button.removeAttribute("aria-current");
     }
@@ -194,35 +251,21 @@ function selectMedia(index, options = {}) {
     }
   });
 
-  if (media.type === "video") {
-    ensureVideoLoaded();
-    heroImage.hidden = true;
-    heroVideo.classList.add("is-active");
-    const playPromise = heroVideo.play();
-    if (playPromise) {
-      playPromise
-        .then(() => setTrailerButtonState(true))
-        .catch(() => setTrailerButtonState(false));
-    }
+  heroImage.hidden = false;
+  heroImage.classList.add("is-switching");
+
+  const revealImage = () => {
+    heroImage.classList.remove("is-switching");
+  };
+
+  if (heroImage.src.endsWith(game.backdrop)) {
+    revealImage();
   } else {
-    heroVideo.pause();
-    heroVideo.classList.remove("is-active");
-    heroImage.hidden = false;
-    heroImage.classList.add("is-switching");
-
-    const revealImage = () => {
-      heroImage.classList.remove("is-switching");
-    };
-
-    if (heroImage.src.endsWith(media.src)) {
-      revealImage();
-    } else {
-      heroImage.addEventListener("load", revealImage, { once: true });
-      heroImage.src = media.src;
-    }
-
-    setTrailerButtonState(false);
+    heroImage.addEventListener("load", revealImage, { once: true });
+    heroImage.src = game.backdrop;
   }
+
+  syncSavedState();
 
   if (!options.fromTimer) {
     restartGalleryTimer();
@@ -234,14 +277,13 @@ function selectMedia(index, options = {}) {
 function startGalleryTimer() {
   window.clearInterval(galleryTimer);
   restartGalleryProgress();
-  if (prefersReducedMotion.matches || document.hidden || currentMediaIndex === 0) {
+  if (prefersReducedMotion.matches || document.hidden || !heroVideo.paused) {
     return;
   }
 
   galleryTimer = window.setInterval(() => {
-    const nextImageIndex = currentMediaIndex >= mediaItems.length - 1 ? 1 : currentMediaIndex + 1;
-    selectMedia(nextImageIndex, { fromTimer: true });
-  }, 7200);
+    selectFeaturedGame(currentFeaturedIndex + 1, { fromTimer: true });
+  }, 8500);
 }
 
 function restartGalleryTimer() {
@@ -249,33 +291,48 @@ function restartGalleryTimer() {
 }
 
 thumbnailButtons.forEach((button) => {
-  button.addEventListener("click", () => selectMedia(Number(button.dataset.mediaIndex)));
+  button.addEventListener("click", () => selectFeaturedGame(Number(button.dataset.featureIndex)));
 });
 
 dotButtons.forEach((button) => {
-  button.addEventListener("click", () => selectMedia(Number(button.dataset.dotIndex)));
+  button.addEventListener("click", () => selectFeaturedGame(Number(button.dataset.featureDotIndex)));
 });
 
-document.querySelector("#previousMedia").addEventListener("click", () => selectMedia(currentMediaIndex - 1));
-document.querySelector("#nextMedia").addEventListener("click", () => selectMedia(currentMediaIndex + 1));
+document.querySelector("#previousMedia").addEventListener("click", () => selectFeaturedGame(currentFeaturedIndex - 1));
+document.querySelector("#nextMedia").addEventListener("click", () => selectFeaturedGame(currentFeaturedIndex + 1));
 
 playTrailerButton.addEventListener("click", () => {
-  if (currentMediaIndex !== 0) {
-    selectMedia(0);
-    return;
-  }
-
   if (heroVideo.paused) {
     ensureVideoLoaded();
-    heroVideo.play().then(() => setTrailerButtonState(true)).catch(() => setTrailerButtonState(false));
+    heroImage.hidden = true;
+    heroVideo.classList.add("is-active");
+    window.clearInterval(galleryTimer);
+    galleryProgress.classList.remove("is-running");
+    heroVideo.play().then(() => setTrailerButtonState(true)).catch(() => {
+      heroImage.hidden = false;
+      heroVideo.classList.remove("is-active");
+      setTrailerButtonState(false);
+    });
   } else {
     heroVideo.pause();
+    heroImage.hidden = false;
+    heroVideo.classList.remove("is-active");
     setTrailerButtonState(false);
+    startGalleryTimer();
   }
 });
 
-heroVideo.addEventListener("play", () => setTrailerButtonState(true));
-heroVideo.addEventListener("pause", () => setTrailerButtonState(false));
+heroVideo.addEventListener("play", () => {
+  setTrailerButtonState(true);
+  window.clearInterval(galleryTimer);
+  galleryProgress.classList.remove("is-running");
+});
+heroVideo.addEventListener("pause", () => {
+  setTrailerButtonState(false);
+  heroImage.hidden = false;
+  heroVideo.classList.remove("is-active");
+});
+heroVideo.addEventListener("ended", startGalleryTimer);
 
 hero.addEventListener("pointerenter", () => {
   hero.classList.add("is-gallery-paused");
@@ -293,7 +350,7 @@ hero.addEventListener("pointerup", (event) => {
   if (Math.abs(travel) < 56) {
     return;
   }
-  selectMedia(currentMediaIndex + (travel < 0 ? 1 : -1));
+  selectFeaturedGame(currentFeaturedIndex + (travel < 0 ? 1 : -1));
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -309,9 +366,10 @@ prefersReducedMotion.addEventListener?.("change", startGalleryTimer);
 
 /* 关键模块：收藏状态在主视觉按钮、卡片按钮和计数器之间保持同步。 */
 function syncSavedState() {
-  const marvelIsSaved = savedGames.has("Marvel Rivals");
-  heroFavorite.setAttribute("aria-pressed", String(marvelIsSaved));
-  heroFavorite.querySelector("span").textContent = marvelIsSaved ? "Saved" : "Save";
+  const currentGame = featuredGames[currentFeaturedIndex];
+  const heroIsSaved = savedGames.has(currentGame.title);
+  heroFavorite.setAttribute("aria-pressed", String(heroIsSaved));
+  heroFavorite.querySelector("span").textContent = heroIsSaved ? "Saved" : "Save";
 
   cardSaveButtons.forEach((button) => {
     button.setAttribute("aria-pressed", String(savedGames.has(button.dataset.saveGame)));
@@ -334,7 +392,7 @@ function toggleSavedGame(gameName) {
   showToast(shouldSave ? `${gameName} saved to your library.` : `${gameName} removed from saved games.`);
 }
 
-heroFavorite.addEventListener("click", () => toggleSavedGame("Marvel Rivals"));
+heroFavorite.addEventListener("click", () => toggleSavedGame(featuredGames[currentFeaturedIndex].title));
 
 cardSaveButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
@@ -459,14 +517,13 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === "ArrowLeft") {
-    selectMedia(currentMediaIndex - 1);
+    selectFeaturedGame(currentFeaturedIndex - 1);
   }
   if (event.key === "ArrowRight") {
-    selectMedia(currentMediaIndex + 1);
+    selectFeaturedGame(currentFeaturedIndex + 1);
   }
 });
 
-syncSavedState();
 filterGames();
-selectMedia(currentMediaIndex, { fromTimer: true });
+selectFeaturedGame(currentFeaturedIndex, { fromTimer: true });
 startGalleryTimer();
