@@ -2,7 +2,7 @@
 
 ## 关键文件
 
-- `index.html`：英文首页，包含唯一 H1、canonical、ItemList 结构化数据和六款游戏入口。
+- `index.html`：英文电影式首页，包含唯一 H1、多个 H2、canonical、ItemList 结构化数据、媒体滑动栏和六款真实游戏入口。
 - `catalog.html`：六款游戏的完整目录页，支持搜索与多分类筛选。
 - `marvel-rivals.html`：Marvel Rivals 详情页，包含官方发行预告片、六张截图、简介、发行日期和 Steam 商店组件。
 - `mr-mine.html`：Mr. Mine 独立浏览器游戏页。
@@ -13,6 +13,8 @@
 - `game-player.html`：旧播放器链接的兼容跳转页，不嵌入任何第三方游戏。
 - `styles.css`：全站 PC 与手机响应式样式，采用深色游戏商店式信息架构。
 - `site.js`：目录搜索、多分类筛选、详情页媒体轮播和后续悬停视频预览的渐进增强脚本。
+- `concept.css`：新版首页专用的电影式响应布局、游戏卡片、媒体滑动栏和手机底部导航样式。
+- `concept.js`：新版首页专用的按需视频加载、媒体切换、搜索筛选和本地收藏逻辑。
 - `assets/covers/`：四款 Playsaurus 浏览器游戏的官方图片。
 - `assets/marvel-rivals/`：Marvel Rivals 的 Steam 官方发行预告片、封面与六张游戏截图。
 - `assets/world-of-eggs/`：World of Eggs 的 Steam 官方预告片、封面与六张游戏截图。

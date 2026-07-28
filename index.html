@@ -1,407 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090d">
+  <title>Free Browser Games &amp; Indie Game Spotlights | OpenNice</title>
+  <meta
+    name="description"
+    content="Play free browser games and discover curated releases on OpenNice, including Marvel Rivals and World of Eggs: Idle Adventures."
+  >
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://opennice.online/">
 
-    <!-- 关键模块：OpenNice 首页 SEO 元数据。 -->
-    <title>Free Browser Games &amp; Indie Game Spotlights | OpenNice</title>
-    <meta
-      name="description"
-      content="Play free browser games and discover curated releases on OpenNice, including Marvel Rivals and World of Eggs: Idle Adventures."
-    >
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://opennice.online/">
-    <meta name="theme-color" content="#0b141f">
+  <!-- 关键模块：社交分享元数据使用站内图片，降低第三方资源与 Cloudflare 风控风险。 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenNice">
+  <meta property="og:title" content="Free Browser Games &amp; Indie Game Spotlights">
+  <meta
+    property="og:description"
+    content="Four playable browser games plus two detailed Steam game spotlights."
+  >
+  <meta property="og:url" content="https://opennice.online/">
+  <meta property="og:image" content="https://opennice.online/assets/marvel-rivals/trailer-poster.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="OpenNice">
-    <meta property="og:title" content="Free Browser Games &amp; Indie Game Spotlights">
-    <meta
-      property="og:description"
-      content="Four playable browser games plus two detailed Steam game spotlights."
-    >
-    <meta property="og:url" content="https://opennice.online/">
-    <meta property="og:image" content="https://opennice.online/assets/marvel-rivals/trailer-poster.jpg">
-    <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="assets/marvel-rivals/screenshot-03.jpg" fetchpriority="high">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="concept.css">
 
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
-    <script src="site.js" defer></script>
-
-    <!-- 关键模块：帮助搜索引擎理解首页与六款收录游戏的关系。 -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "OpenNice",
-        "url": "https://opennice.online/",
-        "description": "An independent game portal featuring playable browser games and curated indie game spotlights.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://opennice.online/catalog.html?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+  <!-- 关键模块：结构化数据帮助搜索引擎理解站点与六款游戏的关系。 -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "OpenNice",
+      "url": "https://opennice.online/",
+      "description": "An independent game portal featuring playable browser games and curated indie game spotlights.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://opennice.online/catalog.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Games on OpenNice",
-        "numberOfItems": 6,
-        "itemListElement": [
-          {"@type":"ListItem","position":1,"name":"Marvel Rivals","url":"https://opennice.online/marvel-rivals.html"},
-          {"@type":"ListItem","position":2,"name":"Mr. Mine","url":"https://opennice.online/mr-mine.html"},
-          {"@type":"ListItem","position":3,"name":"Poker Quest","url":"https://opennice.online/poker-quest.html"},
-          {"@type":"ListItem","position":4,"name":"Grindcraft","url":"https://opennice.online/grindcraft.html"},
-          {"@type":"ListItem","position":5,"name":"Fray Fight","url":"https://opennice.online/fray-fight.html"},
-          {"@type":"ListItem","position":6,"name":"World of Eggs: Idle Adventures","url":"https://opennice.online/world-of-eggs.html"}
-        ]
-      }
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to games</a>
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Games on OpenNice",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Marvel Rivals","url":"https://opennice.online/marvel-rivals.html"},
+        {"@type":"ListItem","position":2,"name":"World of Eggs: Idle Adventures","url":"https://opennice.online/world-of-eggs.html"},
+        {"@type":"ListItem","position":3,"name":"Mr. Mine","url":"https://opennice.online/mr-mine.html"},
+        {"@type":"ListItem","position":4,"name":"Poker Quest","url":"https://opennice.online/poker-quest.html"},
+        {"@type":"ListItem","position":5,"name":"Grindcraft","url":"https://opennice.online/grindcraft.html"},
+        {"@type":"ListItem","position":6,"name":"Fray Fight","url":"https://opennice.online/fray-fight.html"}
+      ]
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to featured games</a>
 
-    <!-- 关键模块：参考大型游戏商店的信息架构，使用“品牌导航 + 发现导航”双层顶栏。 -->
-    <header class="site-header">
-      <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="index.html" aria-label="OpenNice home">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span>OPENNICE</span>
-        </a>
-        <div class="nav-links">
-          <a href="index.html" aria-current="page">Store</a>
-          <a href="catalog.html">Library</a>
-          <a href="#developer">About</a>
-        </div>
-        <p class="header-note"><span aria-hidden="true"></span> Browser &amp; indie games · No clutter</p>
-      </nav>
+  <!-- 关键模块：桌面端固定侧栏，用较小占比建立清晰的游戏分类层级。 -->
+  <aside class="side-rail" aria-label="Game categories">
+    <a class="brand brand--rail" href="#featured" aria-label="OpenNice home">
+      <span class="brand-mark" aria-hidden="true">O</span>
+      <span class="brand-name">OPENNICE</span>
+    </a>
 
-      <div class="discovery-shell">
-        <nav class="discovery-links" aria-label="Discover games">
-          <a href="#featured">Featured</a>
-          <a href="#games">New &amp; noteworthy</a>
-          <a href="#categories">Categories</a>
-        </nav>
-        <form class="header-search" action="catalog.html" method="get" role="search">
-          <label class="visually-hidden" for="home-search">Search games</label>
-          <input id="home-search" name="q" type="search" placeholder="Search the library" autocomplete="off">
-          <button type="submit" aria-label="Search">⌕</button>
-        </form>
+    <nav class="rail-nav" aria-label="Primary">
+      <button class="rail-link is-active" type="button" data-category="all" aria-pressed="true">
+        <span class="rail-number">01</span>
+        <span>Discover</span>
+      </button>
+      <button class="rail-link" type="button" data-category="idle" aria-pressed="false">
+        <span class="rail-number">02</span>
+        <span>Idle</span>
+      </button>
+      <button class="rail-link" type="button" data-category="strategy" aria-pressed="false">
+        <span class="rail-number">03</span>
+        <span>Strategy</span>
+      </button>
+      <button class="rail-link" type="button" data-category="pvp" aria-pressed="false">
+        <span class="rail-number">04</span>
+        <span>Team PVP</span>
+      </button>
+      <button class="rail-link" type="button" data-category="arcade" aria-pressed="false">
+        <span class="rail-number">05</span>
+        <span>Arcade</span>
+      </button>
+    </nav>
+
+    <div class="rail-footer">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>6 games online</span>
+    </div>
+  </aside>
+
+  <div class="site-shell">
+    <!-- 关键模块：顶部工具栏在宽屏保持轻量，手机端收拢为紧凑搜索入口。 -->
+    <header class="topbar">
+      <a class="brand brand--mobile" href="#featured" aria-label="OpenNice home">
+        <span class="brand-mark" aria-hidden="true">O</span>
+        <span class="brand-name">OPENNICE</span>
+      </a>
+
+      <form class="search" role="search">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/>
+        </svg>
+        <label class="sr-only" for="game-search">Search games</label>
+        <input id="game-search" type="search" placeholder="Search games, genres, studios" autocomplete="off">
+        <button class="search-clear" id="clearSearch" type="button" aria-label="Clear search" hidden>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg>
+        </button>
+        <kbd>⌘ K</kbd>
+      </form>
+
+      <div class="top-actions">
+        <button class="icon-button" id="recentGamesButton" type="button" aria-label="View recently played games" title="Recently played">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5M12 7v5l3.2 2"/>
+          </svg>
+        </button>
+        <button class="icon-button" id="savedGamesButton" type="button" aria-label="View saved games" title="Saved games">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/>
+          </svg>
+          <span class="saved-count" id="savedCount" aria-label="0 saved games">0</span>
+        </button>
+        <span class="edition-pill">BETA 01</span>
       </div>
     </header>
 
     <main id="main-content">
-      <!-- 关键模块：Steam 式横向主推荐位；展示 Marvel Rivals 官方媒体并进入独立详情页。 -->
-      <section id="featured" class="featured-section page-shell" aria-labelledby="home-title">
-        <div class="section-label-row">
-          <p class="section-label">Featured &amp; recommended</p>
-          <span>1 video · 6 screenshots</span>
+      <!-- 关键模块：电影式主视觉。背景媒体、游戏信息和缩略图统一在同一内容舞台。 -->
+      <section class="hero" id="featured" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            id="heroImage"
+            src="assets/marvel-rivals/screenshot-03.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+          >
+          <video
+            id="heroVideo"
+            muted
+            loop
+            playsinline
+            preload="none"
+            poster="assets/marvel-rivals/trailer-poster.jpg"
+          >
+            <source id="heroVideoSource" data-src="assets/marvel-rivals/trailer.mp4" type="video/mp4">
+          </video>
+          <div class="hero-scrim"></div>
+          <div class="hero-grain"></div>
         </div>
 
-        <!-- 关键模块：首页媒体展台。第一屏为真实视频，随后六张截图，并支持按钮、圆点、键盘和手机滑动切换。 -->
-        <article
-          class="featured-spotlight"
-          data-media-gallery
-          tabindex="0"
-          aria-label="Marvel Rivals official trailer and screenshot gallery"
-        >
-          <div class="featured-gallery">
-            <div class="featured-media-stage" data-media-stage>
-              <figure class="featured-media-slide is-active" data-media-slide>
-                <video
-                  controls
-                  muted
-                  playsinline
-                  preload="metadata"
-                  poster="assets/marvel-rivals/trailer-poster.jpg"
-                  aria-label="Marvel Rivals official launch trailer"
-                >
-                  <source src="assets/marvel-rivals/trailer.mp4" type="video/mp4">
-                  Your browser does not support HTML5 video.
-                </video>
-                <figcaption>Official launch trailer</figcaption>
-              </figure>
-
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-01.jpg"
-                  alt="Luna Snow using her abilities during a Marvel Rivals match"
-                  width="1920"
-                  height="1080"
-                >
-                <figcaption>Hero abilities in motion</figcaption>
-              </figure>
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-02.jpg"
-                  alt="Marvel heroes fighting together across a detailed team battlefield"
-                  width="1920"
-                  height="1080"
-                  loading="lazy"
-                >
-                <figcaption>Squad combat</figcaption>
-              </figure>
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-03.jpg"
-                  alt="A fast team battle featuring Marvel heroes and vivid ability effects"
-                  width="1920"
-                  height="1080"
-                  loading="lazy"
-                >
-                <figcaption>Team-Up powers</figcaption>
-              </figure>
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-04.jpg"
-                  alt="Marvel Rivals heroes combining powers in a destructible arena"
-                  width="1920"
-                  height="1080"
-                  loading="lazy"
-                >
-                <figcaption>Destructible arenas</figcaption>
-              </figure>
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-05.jpg"
-                  alt="Third-person Marvel Rivals combat across an evolving battlefield"
-                  width="1920"
-                  height="1080"
-                  loading="lazy"
-                >
-                <figcaption>Third-person action</figcaption>
-              </figure>
-              <figure class="featured-media-slide" data-media-slide hidden>
-                <img
-                  src="assets/marvel-rivals/screenshot-06.jpg"
-                  alt="A Marvel Rivals team preparing abilities during an online PVP match"
-                  width="1920"
-                  height="1080"
-                  loading="lazy"
-                >
-                <figcaption>Prepare your squad</figcaption>
-              </figure>
-
-              <span class="featured-badge">Featured release</span>
-              <button
-                class="featured-media-control featured-media-previous"
-                type="button"
-                data-media-previous
-                aria-label="Show previous media"
-              >
-                <span aria-hidden="true">‹</span>
-              </button>
-              <button
-                class="featured-media-control featured-media-next"
-                type="button"
-                data-media-next
-                aria-label="Show next media"
-              >
-                <span aria-hidden="true">›</span>
-              </button>
-              <p class="featured-media-count" aria-live="polite">
-                <span data-media-current>01</span><span>/ 07</span>
-              </p>
-            </div>
+        <div class="hero-topline">
+          <div class="eyebrow">
+            <span class="live-mark" aria-hidden="true"></span>
+            Featured release
           </div>
-
-          <div class="featured-copy">
-            <!-- 关键模块：收藏状态保存在当前浏览器，不需要账号也不会上传个人数据。 -->
-            <button
-              class="favorite-toggle featured-favorite"
-              type="button"
-              data-favorite
-              data-game-id="marvel-rivals"
-              data-game-name="Marvel Rivals"
-              aria-pressed="false"
-              aria-label="Save Marvel Rivals to favorites"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 2.7 2.86 5.8 6.4.93-4.63 4.51 1.1 6.38L12 17.31l-5.73 3.01 1.1-6.38-4.63-4.51 6.4-.93L12 2.7Z"></path>
-              </svg>
-              <span data-favorite-label>Save</span>
-            </button>
-            <p class="eyebrow">Free-to-play team PVP</p>
-            <h1 id="home-title">Marvel<br><span>Rivals</span></h1>
-            <h2>Choose your hero. Rewrite the fight.</h2>
-            <p>
-              Assemble an all-star Marvel squad, combine powers into Team-Up
-              abilities and battle across destructible, ever-changing arenas.
-            </p>
-            <div class="tag-list" role="list" aria-label="Game categories">
-              <span>Team PVP</span><span>Hero Shooter</span><span>Free to Play</span>
-            </div>
-            <div class="featured-meta">
-              <div><small>Availability</small><strong>Free to play</strong></div>
-              <div><small>Platform</small><strong>Windows · Steam</strong></div>
-            </div>
-            <a class="button button-primary" href="marvel-rivals.html">
-              Explore Marvel Rivals <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
-          <!-- 关键模块：底部状态栏明确显示当前媒体位置，圆点可直接跳转。 -->
-          <div class="featured-media-nav">
-            <p class="featured-media-status" data-media-status aria-live="polite">Official launch trailer</p>
-            <div class="featured-dots" role="tablist" aria-label="Choose featured media">
-              <button class="featured-dot is-active" type="button" data-media-thumb data-media-label="Official launch trailer" role="tab" aria-selected="true" aria-label="Show official launch trailer"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Hero abilities in motion" role="tab" aria-selected="false" aria-label="Show screenshot 1"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Squad combat" role="tab" aria-selected="false" aria-label="Show screenshot 2"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Team-Up powers" role="tab" aria-selected="false" aria-label="Show screenshot 3"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Destructible arenas" role="tab" aria-selected="false" aria-label="Show screenshot 4"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Third-person action" role="tab" aria-selected="false" aria-label="Show screenshot 5"></button>
-              <button class="featured-dot" type="button" data-media-thumb data-media-label="Prepare your squad" role="tab" aria-selected="false" aria-label="Show screenshot 6"></button>
-            </div>
-            <p class="featured-media-hint">Arrow keys · swipe</p>
-          </div>
-        </article>
-      </section>
-
-      <!-- 关键模块：高密度横向游戏货架，后续可以继续追加卡片。 -->
-      <section id="games" class="library-section page-shell" aria-labelledby="games-title">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Your next run starts here</p>
-            <h2 id="games-title">Featured games</h2>
-          </div>
-          <a class="text-link" href="catalog.html">Browse all games <span aria-hidden="true">→</span></a>
-        </div>
-
-        <div class="shelf-grid">
-          <article class="store-card preview-host" data-preview="">
-            <div class="store-card-media">
-              <img src="assets/covers/mr-mine.png" alt="Mr. Mine official game screenshot" width="898" height="664">
-              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="status-badge">Free to play</span>
-            </div>
-            <div class="store-card-body">
-              <p class="store-card-platform">Browser · Official embed</p>
-              <h3>Mr. Mine</h3>
-              <div class="store-card-footer"><span>Idle · Management</span><strong>PLAY</strong></div>
-            </div>
-            <a class="game-card-link" href="mr-mine.html" aria-label="Play Mr. Mine online"></a>
-          </article>
-
-          <article class="store-card preview-host" data-preview="">
-            <div class="store-card-media">
-              <img src="assets/covers/poker-quest.png" alt="Poker Quest official game screenshot" width="1313" height="922" loading="lazy">
-              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="status-badge">Free to play</span>
-            </div>
-            <div class="store-card-body">
-              <p class="store-card-platform">Browser · Official embed</p>
-              <h3>Poker Quest</h3>
-              <div class="store-card-footer"><span>Cards · Strategy</span><strong>PLAY</strong></div>
-            </div>
-            <a class="game-card-link" href="poker-quest.html" aria-label="Play Poker Quest online"></a>
-          </article>
-
-          <article class="store-card preview-host" data-preview="">
-            <div class="store-card-media">
-              <img src="assets/covers/grindcraft.png" alt="Grindcraft official game screenshot" width="1018" height="692" loading="lazy">
-              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="status-badge">Free to play</span>
-            </div>
-            <div class="store-card-body">
-              <p class="store-card-platform">Browser · Official embed</p>
-              <h3>Grindcraft</h3>
-              <div class="store-card-footer"><span>Crafting · Idle</span><strong>PLAY</strong></div>
-            </div>
-            <a class="game-card-link" href="grindcraft.html" aria-label="Play Grindcraft online"></a>
-          </article>
-
-          <article class="store-card preview-host" data-preview="">
-            <div class="store-card-media">
-              <img src="assets/covers/fray-fight.png" alt="Fray Fight official game screenshot" width="1080" height="678" loading="lazy">
-              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="status-badge">Free to play</span>
-            </div>
-            <div class="store-card-body">
-              <p class="store-card-platform">Browser · Official embed</p>
-              <h3>Fray Fight</h3>
-              <div class="store-card-footer"><span>Arcade · Upgrades</span><strong>PLAY</strong></div>
-            </div>
-            <a class="game-card-link" href="fray-fight.html" aria-label="Play Fray Fight online"></a>
-          </article>
-
-          <!-- 关键模块：Steam 抢先体验游戏入口，仅进入详情页，不伪装成站内可玩 iframe。 -->
-          <article class="store-card preview-host" data-preview="">
-            <div class="store-card-media">
-              <img
-                src="assets/world-of-eggs/trailer-poster.jpg"
-                alt="World of Eggs: Idle Adventures official game artwork"
-                width="600"
-                height="337"
-                loading="lazy"
-              >
-              <video class="preview-video" muted loop playsinline preload="none" aria-hidden="true"></video>
-              <span class="status-badge status-badge-early">Early access</span>
-            </div>
-            <div class="store-card-body">
-              <p class="store-card-platform">Steam · Store spotlight</p>
-              <h3>World of Eggs: Idle Adventures</h3>
-              <div class="store-card-footer"><span>Idle · Strategy</span><strong>DETAILS</strong></div>
-            </div>
-            <a class="game-card-link" href="world-of-eggs.html" aria-label="View World of Eggs: Idle Adventures details"></a>
-          </article>
-        </div>
-      </section>
-
-      <!-- 关键模块：分类入口便于游戏数量增加后扩展。 -->
-      <section id="categories" class="category-section page-shell" aria-labelledby="category-title">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Browse by style</p>
-            <h2 id="category-title">Find your kind of fun</h2>
+          <div class="slide-counter" aria-live="polite">
+            <span id="currentSlideLabel">01</span>
+            <span aria-hidden="true">/</span>
+            <span>07</span>
           </div>
         </div>
-        <div class="category-grid">
-          <a href="catalog.html?genre=idle"><span>01</span><strong>Idle worlds</strong><small>Three games</small></a>
-          <a href="catalog.html?genre=strategy"><span>02</span><strong>Smart plays</strong><small>Two games</small></a>
-          <a href="catalog.html?genre=pvp"><span>03</span><strong>Team combat</strong><small>One game</small></a>
-          <a href="catalog.html?genre=arcade"><span>04</span><strong>Quick action</strong><small>One game</small></a>
-        </div>
-      </section>
 
-      <section id="developer" class="developer-panel page-shell" aria-labelledby="developer-title">
-        <div>
-          <p class="section-kicker">Independent portal · Official sources</p>
-          <h2 id="developer-title">Built by game studios.<br>Curated by OpenNice.</h2>
-        </div>
-        <div class="developer-copy">
-          <p>
-            The four playable browser games are developed by
-            <a href="https://playsaurus.com" target="_blank"><strong>Playsaurus</strong></a>.
-            <a href="marvel-rivals.html"><strong>Marvel Rivals</strong></a> is developed and
-            published by NetEase Games, while
-            <a href="world-of-eggs.html"><strong>World of Eggs</strong></a> is developed and
-            published by SQRT Games. OpenNice is an independent portal and does not claim
-            ownership of any featured game.
+        <div class="hero-copy">
+          <p class="hero-kicker">Free team PVP · Steam</p>
+          <h1 id="hero-title">Marvel<br><em>Rivals</em></h1>
+          <p class="hero-description">
+            Assemble an all-star Marvel squad, combine powers into Team-Up abilities,
+            and reshape destructible battlefields in a fast, free-to-play team shooter.
           </p>
-          <a class="button button-secondary" href="catalog.html">Explore the library</a>
+          <div class="hero-meta" aria-label="Game information">
+            <span>Free to play</span>
+            <span>6v6 action</span>
+            <span>Released Dec 6, 2024</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button button--primary" href="marvel-rivals.html">
+              Explore Marvel Rivals
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></svg>
+            </a>
+            <button class="button button--ghost" id="playTrailerButton" type="button" aria-pressed="false">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 7 8 5-8 5V7Z"/></svg>
+              <span id="trailerButtonLabel">Play trailer</span>
+            </button>
+          </div>
+        </div>
+
+        <button class="favorite-button" id="heroFavorite" type="button" aria-pressed="false" aria-label="Save Marvel Rivals">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/>
+          </svg>
+          <span>Save</span>
+        </button>
+
+        <button class="media-arrow media-arrow--previous" id="previousMedia" type="button" aria-label="Previous media">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg>
+        </button>
+        <button class="media-arrow media-arrow--next" id="nextMedia" type="button" aria-label="Next media">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+
+        <!-- 关键模块：底部媒体导航同时服务鼠标、键盘与触屏，视频入口明确标注。 -->
+        <div class="media-dock" aria-label="Marvel Rivals media gallery">
+          <div class="thumbnail-track" id="thumbnailTrack">
+            <button class="media-thumbnail" type="button" data-media-index="0" aria-label="Play official trailer">
+              <img src="assets/marvel-rivals/trailer-poster.jpg" alt="" width="599" height="337" loading="lazy" decoding="async">
+              <span class="thumbnail-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m9 7 8 5-8 5V7Z"/></svg>
+              </span>
+              <span>Trailer</span>
+            </button>
+            <button class="media-thumbnail" type="button" data-media-index="1" aria-label="Show screenshot 1">
+              <img src="assets/marvel-rivals/screenshot-01.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Luna Snow</span>
+            </button>
+            <button class="media-thumbnail" type="button" data-media-index="2" aria-label="Show screenshot 2">
+              <img src="assets/marvel-rivals/screenshot-02.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Team play</span>
+            </button>
+            <button class="media-thumbnail is-active" type="button" data-media-index="3" aria-label="Show screenshot 3" aria-current="true">
+              <img src="assets/marvel-rivals/screenshot-03.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Rivalry</span>
+            </button>
+            <button class="media-thumbnail" type="button" data-media-index="4" aria-label="Show screenshot 4">
+              <img src="assets/marvel-rivals/screenshot-04.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Arena</span>
+            </button>
+            <button class="media-thumbnail" type="button" data-media-index="5" aria-label="Show screenshot 5">
+              <img src="assets/marvel-rivals/screenshot-05.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Combat</span>
+            </button>
+            <button class="media-thumbnail" type="button" data-media-index="6" aria-label="Show screenshot 6">
+              <img src="assets/marvel-rivals/screenshot-06.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+              <span>Heroes</span>
+            </button>
+          </div>
+
+          <div class="media-dock-footer">
+            <p class="media-status" id="mediaStatus" aria-live="polite">Rivalry · Screenshot 3</p>
+            <div class="media-dots" id="mediaDots" aria-label="Choose media">
+              <button type="button" data-dot-index="0" aria-label="Media 1"></button>
+              <button type="button" data-dot-index="1" aria-label="Media 2"></button>
+              <button type="button" data-dot-index="2" aria-label="Media 3"></button>
+              <button class="is-active" type="button" data-dot-index="3" aria-label="Media 4" aria-current="true"></button>
+              <button type="button" data-dot-index="4" aria-label="Media 5"></button>
+              <button type="button" data-dot-index="5" aria-label="Media 6"></button>
+              <button type="button" data-dot-index="6" aria-label="Media 7"></button>
+            </div>
+          </div>
+          <div class="gallery-progress" aria-hidden="true"><span id="galleryProgress"></span></div>
         </div>
       </section>
-    </main>
 
-    <footer class="site-footer">
-      <div class="footer-shell">
-        <div class="footer-brand">
-          <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span>OPENNICE</span></a>
-          <p>Good browser games, ready when you are.</p>
+      <!-- 关键模块：真实游戏素材组成可横向扩展的内容轨道，适合后续持续上架游戏。 -->
+      <section class="library-section" id="library" aria-labelledby="library-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-eyebrow">Curated browser library</p>
+            <h2 id="library-title">Play something remarkable</h2>
+          </div>
+          <div class="section-controls">
+            <span id="visibleGameCount">6 games</span>
+            <button class="text-button" id="showAllGames" type="button">View all</button>
+          </div>
+        </div>
+
+        <div class="game-grid" id="gameGrid">
+          <article class="game-card game-card--wide" data-category="pvp" data-search="marvel rivals pvp team shooter free" data-href="marvel-rivals.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/marvel-rivals/screenshot-04.jpg" alt="Marvel Rivals heroes in battle" width="1920" height="1080">
+              <span class="card-rank">01</span>
+              <span class="card-badge">Featured</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save Marvel Rivals" aria-pressed="false" data-save-game="Marvel Rivals">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="marvel-rivals.html">Marvel Rivals</a></h3>
+                <p>Team PVP · Free to play</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+
+          <article class="game-card" data-category="idle strategy" data-search="world of eggs idle adventures strategy mmo trading early access" data-href="world-of-eggs.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/world-of-eggs/trailer-poster.jpg" alt="World of Eggs: Idle Adventures artwork" width="599" height="337" loading="lazy">
+              <span class="card-rank">02</span>
+              <span class="card-badge card-badge--lime">Early access</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save World of Eggs" aria-pressed="false" data-save-game="World of Eggs">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="world-of-eggs.html">World of Eggs</a></h3>
+                <p>Idle MMO · Trading</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+
+          <article class="game-card" data-category="idle strategy" data-search="mr mine idle mining strategy playsaurus" data-href="mr-mine.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/covers/mr-mine.png" alt="Mr. Mine game artwork" width="898" height="664" loading="lazy">
+              <span class="card-rank">03</span>
+              <span class="card-badge card-badge--blue">Play now</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save Mr. Mine" aria-pressed="false" data-save-game="Mr. Mine">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="mr-mine.html">Mr. Mine</a></h3>
+                <p>Idle mining · Management</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+
+          <article class="game-card" data-category="strategy" data-search="poker quest cards roguelike strategy playsaurus" data-href="poker-quest.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/covers/poker-quest.png" alt="Poker Quest game artwork" width="1313" height="922" loading="lazy">
+              <span class="card-rank">04</span>
+              <span class="card-badge card-badge--blue">Play now</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save Poker Quest" aria-pressed="false" data-save-game="Poker Quest">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="poker-quest.html">Poker Quest</a></h3>
+                <p>Cards · Roguelike strategy</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+
+          <article class="game-card" data-category="idle strategy" data-search="grindcraft crafting idle strategy playsaurus" data-href="grindcraft.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/covers/grindcraft.png" alt="Grindcraft game artwork" width="1018" height="692" loading="lazy">
+              <span class="card-rank">05</span>
+              <span class="card-badge card-badge--blue">Play now</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save Grindcraft" aria-pressed="false" data-save-game="Grindcraft">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="grindcraft.html">Grindcraft</a></h3>
+                <p>Crafting · Incremental</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+
+          <article class="game-card" data-category="arcade" data-search="fray fight arcade action survivor playsaurus" data-href="fray-fight.html" tabindex="0">
+            <div class="game-art">
+              <img src="assets/covers/fray-fight.png" alt="Fray Fight game artwork" width="1080" height="678" loading="lazy">
+              <span class="card-rank">06</span>
+              <span class="card-badge card-badge--coral">Arcade</span>
+              <span class="card-hover-label" aria-hidden="true">View game <span>↗</span></span>
+              <button class="card-save" type="button" aria-label="Save Fray Fight" aria-pressed="false" data-save-game="Fray Fight">
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+              </button>
+            </div>
+            <div class="game-card-copy">
+              <div>
+                <h3><a href="fray-fight.html">Fray Fight</a></h3>
+                <p>Arcade action · Survivor</p>
+              </div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="empty-state" id="emptyState" hidden>No games match this view yet.</p>
+      </section>
+
+      <!-- 关键模块：补充简洁、可抓取的站点定位，兼顾用户理解与首页 SEO 语义。 -->
+      <section class="editorial-note" aria-labelledby="editorial-title">
+        <div>
+          <p class="section-eyebrow">Built for discovery</p>
+          <h2 id="editorial-title">One library. Two ways to play.</h2>
         </div>
         <p>
-          OpenNice is an independent portal. Games are loaded from official developer
-          servers and remain the property of their respective rights holders.
+          Launch four free browser games instantly, or explore curated Steam releases
+          through official media, developer details, and store links.
         </p>
-        <div class="footer-links">
-          <a href="catalog.html">All games</a>
-          <a href="https://playsaurus.com" target="_blank">Playsaurus</a>
-          <a href="https://playsaurus.com/embed-our-games" target="_blank">Embed terms</a>
-        </div>
-      </div>
-    </footer>
-  </body>
+        <a class="text-link" href="catalog.html">
+          Browse the full library
+          <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+    </main>
+  </div>
+
+  <!-- 关键模块：手机端底部导航替代固定侧栏，保留拇指可触达性。 -->
+  <nav class="mobile-dock" aria-label="Mobile navigation">
+    <button class="is-active" type="button" data-mobile-category="all" aria-pressed="true">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-6v-6h-4v6H4v-9Z"/></svg>
+      <span>Discover</span>
+    </button>
+    <button type="button" data-mobile-category="idle" aria-pressed="false">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8"/></svg>
+      <span>Idle</span>
+    </button>
+    <button type="button" data-mobile-category="pvp" aria-pressed="false">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 4h8l2 5-6 11L6 9l2-5Zm0 0 4 5 4-5M6 9h12"/></svg>
+      <span>PVP</span>
+    </button>
+    <button type="button" data-mobile-category="saved" aria-pressed="false">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+      <span>Saved</span>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="concept.js"></script>
+</body>
 </html>
