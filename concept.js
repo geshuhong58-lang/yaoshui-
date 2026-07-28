@@ -1,3 +1,74 @@
+/* 关键模块：先把已审核的新增游戏渲染进首页，再绑定筛选、收藏和键盘交互。 */
+const importedBrowserGames = Array.isArray(window.OpenNiceBrowserGames)
+  ? window.OpenNiceBrowserGames
+  : [];
+
+function renderImportedBrowserGames() {
+  const gameGrid = document.querySelector("#gameGrid");
+  if (!gameGrid || importedBrowserGames.length === 0) {
+    return;
+  }
+
+  const cardMarkup = importedBrowserGames
+    .map((game) => {
+      const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
+      const categoryText = game.categories.join(" ");
+      const cardMeta = game.tags.slice(0, 2).join(" · ");
+
+      return `
+        <article
+          class="game-card game-card--imported"
+          data-category="${categoryText}"
+          data-search="${game.search}"
+          data-href="${detailUrl}"
+          tabindex="0"
+        >
+          <div class="game-art">
+            <div class="browser-cover-frame">
+              <img
+                class="browser-cover-backdrop"
+                src="${game.cover}"
+                alt=""
+                aria-hidden="true"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+              <img
+                class="browser-game-cover"
+                src="${game.cover}"
+                alt="${game.title} game cover"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+            <span class="card-rank">${game.rank}</span>
+            <span class="card-badge card-badge--blue">Play now</span>
+            <span class="card-hover-label" aria-hidden="true">Launch game <span>↗</span></span>
+            <button class="card-save" type="button" aria-label="Save ${game.title}" aria-pressed="false" data-save-game="${game.title}">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
+            </button>
+          </div>
+          <div class="game-card-copy">
+            <div>
+              <h3><a href="${detailUrl}">${game.title}</a></h3>
+              <p>${cardMeta}</p>
+            </div>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+
+  gameGrid.insertAdjacentHTML("beforeend", cardMarkup);
+}
+
+renderImportedBrowserGames();
+
 /* 关键模块：媒体数据只引用 OpenNice 已有的本地官方素材，避免外部图库和额外请求。 */
 const mediaItems = [
   { type: "video", label: "Official launch trailer" },

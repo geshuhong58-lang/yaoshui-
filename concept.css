@@ -140,32 +140,28 @@ svg {
   flex: 0 0 2.45rem;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(113, 230, 255, 0.54);
   border-radius: 0.78rem;
-  background:
-    linear-gradient(145deg, rgba(113, 230, 255, 0.3), rgba(23, 56, 103, 0.25)),
-    #0b1520;
+  background: #07131f url("favicon.svg?v=20260728c") center / cover no-repeat;
   color: var(--cyan);
   box-shadow:
-    inset 0 0 24px rgba(113, 230, 255, 0.1),
-    0 0.5rem 1.8rem rgba(31, 166, 202, 0.12);
+    0 0 0 1px rgba(113, 230, 255, 0.12),
+    0 0.65rem 1.8rem rgba(31, 166, 202, 0.2);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .brand-mark::before {
-  position: absolute;
-  inset: -50% 56% -30% -38%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.23), transparent);
-  content: "";
-  transform: rotate(24deg);
+  content: none;
 }
 
 .brand-core {
-  position: relative;
-  width: 0.82rem;
-  height: 0.82rem;
-  border: 0.25rem solid var(--cyan);
-  border-radius: 50%;
-  box-shadow: 0 0 0 0.18rem rgba(113, 230, 255, 0.09);
+  display: none;
+}
+
+.brand:hover .brand-mark {
+  box-shadow:
+    0 0 0 1px rgba(113, 230, 255, 0.22),
+    0 0.75rem 2.1rem rgba(31, 166, 202, 0.28);
+  transform: translateY(-1px) rotate(-2deg);
 }
 
 .brand-name {
@@ -1124,10 +1120,173 @@ svg {
   transition: transform 600ms var(--ease), filter 300ms ease;
 }
 
+/* 关键模块：横版游戏画面在竖版卡片中保持完整，背景层负责自然填满留白。 */
+.browser-cover-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #080d14;
+}
+
+.browser-cover-frame .browser-cover-backdrop {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  object-fit: cover;
+  filter: blur(14px) brightness(0.52) saturate(1.16);
+  transform: scale(1.04);
+}
+
+.browser-cover-frame .browser-game-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 1rem 1.8rem rgba(0, 0, 0, 0.32));
+}
+
+.game-card:hover .browser-cover-frame .browser-cover-backdrop,
+.game-card:focus-visible .browser-cover-frame .browser-cover-backdrop,
+.game-card:focus-within .browser-cover-frame .browser-cover-backdrop {
+  filter: blur(14px) brightness(0.58) saturate(1.22);
+  transform: scale(1.1);
+}
+
+.game-card:hover .browser-cover-frame .browser-game-cover,
+.game-card:focus-visible .browser-cover-frame .browser-game-cover,
+.game-card:focus-within .browser-cover-frame .browser-game-cover {
+  filter: drop-shadow(0 1rem 1.8rem rgba(0, 0, 0, 0.32)) saturate(1.08) contrast(1.04);
+  transform: scale(1.035);
+}
+
+/* 关键模块：无外链图片的新增游戏使用轻量品牌封面，避免热链、跨域和 Cloudflare 风控。 */
+.generated-cover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: 1rem 0.75rem 2.3rem;
+  background:
+    radial-gradient(circle at 76% 18%, color-mix(in srgb, var(--cover-accent) 72%, transparent), transparent 32%),
+    linear-gradient(145deg, color-mix(in srgb, var(--cover-accent-alt) 62%, #111827), #080b11 72%);
+  transform: scale(1.001);
+  transition: filter 300ms ease, transform 600ms var(--ease);
+}
+
+.generated-cover::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 47%, rgba(255, 255, 255, 0.1) 47% 48%, transparent 48%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 26px);
+  content: "";
+  mask-image: linear-gradient(180deg, #000, transparent 82%);
+}
+
+.generated-cover::after {
+  position: absolute;
+  top: -18%;
+  right: -44%;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--cover-accent) 56%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1.8rem color-mix(in srgb, var(--cover-accent) 10%, transparent),
+    0 0 0 3.9rem color-mix(in srgb, var(--cover-accent) 5%, transparent);
+  content: "";
+}
+
+.generated-cover__orbit {
+  position: absolute;
+  top: 23%;
+  left: 18%;
+  width: 60%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 50%;
+  transform: rotate(-18deg);
+}
+
+.generated-cover__orbit::before,
+.generated-cover__orbit::after {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--cover-accent);
+  box-shadow: 0 0 1.4rem color-mix(in srgb, var(--cover-accent) 88%, transparent);
+  content: "";
+}
+
+.generated-cover__orbit::before {
+  top: 10%;
+  right: 4%;
+  width: 0.52rem;
+  height: 0.52rem;
+}
+
+.generated-cover__orbit::after {
+  bottom: 17%;
+  left: -2%;
+  width: 0.28rem;
+  height: 0.28rem;
+}
+
+.generated-cover__initials {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.96);
+  font-family: "Arial Narrow", "Avenir Next Condensed", sans-serif;
+  font-size: clamp(2.5rem, 3.6vw, 4.4rem);
+  font-weight: 950;
+  letter-spacing: -0.1em;
+  line-height: 0.8;
+  text-shadow: 0 0.8rem 2.2rem rgba(0, 0, 0, 0.38);
+  transform: translateX(-53%);
+}
+
+.generated-cover__name,
+.generated-cover__type {
+  position: relative;
+  z-index: 1;
+}
+
+.generated-cover__name {
+  max-width: 12ch;
+  color: #fff;
+  font-family: "Arial Narrow", "Avenir Next Condensed", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.generated-cover__type {
+  margin-top: 0.34rem;
+  color: color-mix(in srgb, var(--cover-accent) 74%, white);
+  font-size: 0.48rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .game-card:hover .game-art img,
 .game-card:focus-visible .game-art img,
 .game-card:focus-within .game-art img {
   filter: saturate(1.08) contrast(1.04);
+  transform: scale(1.045);
+}
+
+.game-card:hover .generated-cover,
+.game-card:focus-visible .generated-cover,
+.game-card:focus-within .generated-cover {
+  filter: saturate(1.12) contrast(1.04);
   transform: scale(1.045);
 }
 

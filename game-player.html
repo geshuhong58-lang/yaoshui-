@@ -4,37 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- 关键模块：旧播放器地址只作兼容跳转，不再包含任何第三方游戏嵌入。 -->
-    <title>Game Page Moved | OpenNice</title>
-    <meta name="description" content="This OpenNice game page has moved to a dedicated address.">
-    <meta name="robots" content="noindex, follow">
-    <meta name="theme-color" content="#101218">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
+    <!-- 关键模块：标题、摘要、canonical 和结构化数据会从固定游戏白名单中安全写入。 -->
+    <title>Play Browser Games Online | OpenNice</title>
+    <meta id="page-description" name="description" content="Play a free browser game online on OpenNice.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link id="page-canonical" rel="canonical" href="https://opennice.online/catalog.html">
+    <meta name="theme-color" content="#08111b">
+    <meta property="og:type" content="website">
+    <meta id="og-title" property="og:title" content="Play Browser Games Online">
+    <meta id="og-description" property="og:description" content="Launch a free browser game on OpenNice.">
+    <meta id="og-url" property="og:url" content="https://opennice.online/catalog.html">
+    <link rel="icon" href="favicon.svg?v=20260728c" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20260728c">
+    <link rel="stylesheet" href="styles.css?v=20260728c">
+    <script id="game-schema" type="application/ld+json"></script>
 
-    <script>
-      // 关键模块：只允许跳转到站内六个固定详情页，避免把用户带到未经审核的地址。
-      const gamePages = {
-        "marvel-rivals": "marvel-rivals.html",
-        "mr-mine": "mr-mine.html",
-        "poker-quest": "poker-quest.html",
-        "grindcraft": "grindcraft.html",
-        "fray-fight": "fray-fight.html",
-        "world-of-eggs": "world-of-eggs.html"
-      };
-
-      // 关键模块：读取旧链接中的 game 参数；无匹配时返回安全的游戏目录。
-      const requestedGame = new URLSearchParams(window.location.search).get("game");
-      const destination = gamePages[requestedGame] || "catalog.html";
-      window.location.replace(destination);
-    </script>
+    <!-- 关键模块：固定数据先加载，播放器只读取白名单中的 HTTPS 游戏地址。 -->
+    <script src="browser-games.js?v=20260728b" defer></script>
+    <script src="game-player.js?v=20260728b" defer></script>
+    <script src="site.js?v=20260728b" defer></script>
   </head>
-  <body class="redirect-page">
-    <main class="redirect-card">
-      <p class="section-kicker">OpenNice</p>
-      <h1>Page moved.</h1>
-      <p>The game now has its own dedicated page. Redirecting you to the current collection…</p>
-      <a class="button button-primary" href="catalog.html">Browse all games</a>
+  <body>
+    <a class="skip-link" href="#game">Skip to game</a>
+
+    <header class="site-header">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="index.html" aria-label="OpenNice home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>OPENNICE</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Store</a>
+          <a href="catalog.html">Library</a>
+          <a href="index.html#library">Discover</a>
+        </div>
+        <p class="header-note"><span aria-hidden="true"></span> Browser game · Source verified</p>
+      </nav>
+
+      <div class="discovery-shell">
+        <nav class="discovery-links" aria-label="Discover this game">
+          <a href="#game">Play now</a>
+          <a href="#about-title">About this game</a>
+          <a href="#more-title">More games</a>
+        </nav>
+        <form class="header-search" action="catalog.html" method="get" role="search">
+          <label class="visually-hidden" for="game-search">Search games</label>
+          <input id="game-search" name="q" type="search" placeholder="Search the library" autocomplete="off">
+          <button type="submit" aria-label="Search">⌕</button>
+        </form>
+      </div>
+    </header>
+
+    <main class="page-shell game-page">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="catalog.html">Games</a>
+        <span aria-hidden="true">/</span>
+        <span id="breadcrumb-title" aria-current="page">Browser game</span>
+      </nav>
+
+      <section class="game-heading game-heading--interactive" aria-labelledby="page-title">
+        <div>
+          <p id="game-eyebrow" class="section-kicker">Browser game</p>
+          <h1 id="page-title">Loading game…</h1>
+        </div>
+        <div class="game-heading-side">
+          <p class="game-heading-copy">
+            <strong>One-line guide</strong>
+            <span id="game-tagline">Preparing a verified browser game.</span>
+          </p>
+          <button
+            class="game-save-button"
+            type="button"
+            data-favorite
+            data-game-id=""
+            data-game-name=""
+            aria-pressed="false"
+          >
+            <span aria-hidden="true">☆</span>
+            <span data-favorite-label>Save</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 关键模块：点击开始后才创建第三方 iframe，减少首页误加载并保留明确的用户手势。 -->
+      <section id="game" class="game-frame game-frame--source" aria-label="Browser game player">
+        <div class="player-toolbar">
+          <p class="player-status">
+            <span class="player-status-dot" aria-hidden="true"></span>
+            <span id="player-status-text">Ready to launch</span>
+          </p>
+          <div class="player-toolbar-actions">
+            <button id="fullscreen-button" type="button" hidden>Fullscreen</button>
+            <a id="toolbar-source-link" href="catalog.html" target="_blank" rel="noopener noreferrer">Open source site ↗</a>
+          </div>
+        </div>
+
+        <div id="game-embed" class="game-embed game-embed--source">
+          <div id="launch-panel" class="player-launch">
+            <div id="player-cover" class="player-cover-frame">
+              <img
+                id="player-cover-image"
+                class="player-cover-image"
+                src=""
+                alt=""
+                width="960"
+                height="540"
+              >
+              <div class="player-cover-overlay">
+                <span id="cover-type">Browser game</span>
+                <strong id="cover-name">OpenNice</strong>
+              </div>
+            </div>
+            <div class="player-launch-copy">
+              <p>Free browser session</p>
+              <h2 id="launch-title">Ready when you are.</h2>
+              <span id="orientation-tip">The game opens here without leaving OpenNice.</span>
+              <button id="play-game-button" class="button button-primary" type="button">
+                Start game
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+          <noscript>
+            <p class="player-noscript">JavaScript is required to create the game iframe safely.</p>
+          </noscript>
+        </div>
+
+        <p class="attribution">
+          <span id="attribution-title">This game</span>
+          is loaded from
+          <a id="source-link" href="catalog.html" target="_blank" rel="noopener noreferrer">its source site</a>.
+          OpenNice does not claim to have created or to own it.
+        </p>
+      </section>
+
+      <div class="game-info-grid">
+        <section class="info-card" aria-labelledby="about-title">
+          <h2 id="about-title">About this game</h2>
+          <p id="game-description">Select a verified game from the OpenNice library to read its summary.</p>
+          <p class="embed-help">
+            Third-party game availability can vary by browser, region and network.
+            If the frame stays blank, use the clearly marked source-site link above.
+          </p>
+        </section>
+        <section class="info-card" aria-labelledby="details-title">
+          <h2 id="details-title">Game details</h2>
+          <dl class="fact-list">
+            <div><dt>Platform</dt><dd>Web browser</dd></div>
+            <div><dt>Access</dt><dd>Free to play</dd></div>
+            <div><dt>Source</dt><dd id="source-host">Verified HTTPS site</dd></div>
+            <div><dt>Tags</dt><dd id="game-tags">Online game</dd></div>
+          </dl>
+        </section>
+      </div>
+
+      <section class="more-games" aria-labelledby="more-title">
+        <h2 id="more-title">More games on OpenNice</h2>
+        <div class="mini-grid">
+          <a class="mini-card" href="game-player.html?game=starblast"><span>Space combat</span><h3>Starblast.io</h3></a>
+          <a class="mini-card" href="game-player.html?game=smash-karts"><span>Kart battle</span><h3>Smash Karts</h3></a>
+          <a class="mini-card" href="mr-mine.html"><span>Idle management</span><h3>Mr. Mine</h3></a>
+          <a class="mini-card" href="catalog.html"><span>Full collection</span><h3>Browse all games</h3></a>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-shell">
+        <p>OpenNice is an independent browser game portal. Third-party games remain the property of their respective rights holders.</p>
+        <div class="footer-links">
+          <a href="catalog.html">All games</a>
+          <a id="footer-source-link" href="catalog.html" target="_blank" rel="noopener noreferrer">Game source</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

@@ -7,7 +7,7 @@
   <title>Free Browser Games &amp; Indie Game Spotlights | OpenNice</title>
   <meta
     name="description"
-    content="Play free browser games and discover curated releases on OpenNice, including Marvel Rivals and World of Eggs: Idle Adventures."
+    content="Play 14 free browser games and discover curated releases on OpenNice, including Smash Karts, Starblast.io, Marvel Rivals and World of Eggs."
   >
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://opennice.online/">
@@ -18,18 +18,19 @@
   <meta property="og:title" content="Free Browser Games &amp; Indie Game Spotlights">
   <meta
     property="og:description"
-    content="Four playable browser games plus two detailed Steam game spotlights."
+    content="Fourteen playable browser games plus two detailed Steam game spotlights."
   >
   <meta property="og:url" content="https://opennice.online/">
   <meta property="og:image" content="https://opennice.online/assets/marvel-rivals/trailer-poster.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preload" as="image" href="assets/marvel-rivals/screenshot-03.jpg" fetchpriority="high">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.svg?v=20260728c" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=20260728c">
   <!-- 关键模块：样式版本号避免 Cloudflare 长缓存造成新版 HTML 搭配旧版 CSS。 -->
-  <link rel="stylesheet" href="concept.css?v=c2b513e">
+  <link rel="stylesheet" href="concept.css?v=20260728c">
 
-  <!-- 关键模块：结构化数据帮助搜索引擎理解站点与六款游戏的关系。 -->
+  <!-- 关键模块：结构化数据帮助搜索引擎理解站点与十七款游戏的关系。 -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,14 +50,24 @@
       "@context": "https://schema.org",
       "@type": "ItemList",
       "name": "Games on OpenNice",
-      "numberOfItems": 6,
+      "numberOfItems": 16,
       "itemListElement": [
         {"@type":"ListItem","position":1,"name":"Marvel Rivals","url":"https://opennice.online/marvel-rivals.html"},
         {"@type":"ListItem","position":2,"name":"World of Eggs: Idle Adventures","url":"https://opennice.online/world-of-eggs.html"},
         {"@type":"ListItem","position":3,"name":"Mr. Mine","url":"https://opennice.online/mr-mine.html"},
         {"@type":"ListItem","position":4,"name":"Poker Quest","url":"https://opennice.online/poker-quest.html"},
         {"@type":"ListItem","position":5,"name":"Grindcraft","url":"https://opennice.online/grindcraft.html"},
-        {"@type":"ListItem","position":6,"name":"Fray Fight","url":"https://opennice.online/fray-fight.html"}
+        {"@type":"ListItem","position":6,"name":"Fray Fight","url":"https://opennice.online/fray-fight.html"},
+        {"@type":"ListItem","position":7,"name":"Smash Karts","url":"https://opennice.online/game-player.html?game=smash-karts"},
+        {"@type":"ListItem","position":8,"name":"Starblast.io","url":"https://opennice.online/game-player.html?game=starblast"},
+        {"@type":"ListItem","position":9,"name":"War Brokers","url":"https://opennice.online/game-player.html?game=war-brokers"},
+        {"@type":"ListItem","position":10,"name":"Bonk.io","url":"https://opennice.online/game-player.html?game=bonk"},
+        {"@type":"ListItem","position":11,"name":"Rocket Bot Royale","url":"https://opennice.online/game-player.html?game=rocket-bot-royale"},
+        {"@type":"ListItem","position":12,"name":"Wormate.io","url":"https://opennice.online/game-player.html?game=wormate"},
+        {"@type":"ListItem","position":13,"name":"Superhex.io","url":"https://opennice.online/game-player.html?game=superhex"},
+        {"@type":"ListItem","position":14,"name":"Getaway Shootout","url":"https://opennice.online/game-player.html?game=getaway-shootout"},
+        {"@type":"ListItem","position":15,"name":"Basketball FRVR","url":"https://opennice.online/game-player.html?game=basketball-frvr"},
+        {"@type":"ListItem","position":16,"name":"2048","url":"https://opennice.online/game-player.html?game=2048"}
       ]
     }
   </script>
@@ -116,7 +127,7 @@
       <span class="status-dot" aria-hidden="true"></span>
       <span class="rail-footer-copy">
         <strong>Library online</strong>
-        <span>6 games ready</span>
+        <span>14 playable · 2 spotlights</span>
       </span>
       <span class="rail-footer-pulse" aria-hidden="true">Live</span>
     </div>
@@ -296,7 +307,7 @@
             <h2 id="library-title">Play something remarkable</h2>
           </div>
           <div class="section-controls">
-            <span id="visibleGameCount">6 games</span>
+            <span id="visibleGameCount">16 games</span>
             <button class="text-button" id="showAllGames" type="button">View all</button>
           </div>
         </div>
@@ -427,7 +438,7 @@
           <h2 id="editorial-title">One library. Two ways to play.</h2>
         </div>
         <p>
-          Launch four free browser games instantly, or explore curated Steam releases
+          Launch fourteen free browser games, or explore curated Steam releases
           through official media, developer details, and store links.
         </p>
         <a class="text-link" href="catalog.html">
@@ -459,6 +470,8 @@
   </nav>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="concept.js"></script>
+  <!-- 关键模块：先加载审核后的游戏数据，再初始化首页交互。 -->
+  <script src="browser-games.js?v=20260728b"></script>
+  <script src="concept.js?v=20260728b"></script>
 </body>
 </html>

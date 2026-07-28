@@ -1,3 +1,55 @@
+/* 关键模块：把审核后的新增浏览器游戏写入目录，保证首页与目录共用同一份数据。 */
+(() => {
+  const gameList = Array.isArray(window.OpenNiceBrowserGames)
+    ? window.OpenNiceBrowserGames
+    : [];
+  const mountPoint = document.querySelector("[data-imported-game-list]");
+  if (!mountPoint || gameList.length === 0) return;
+
+  const rows = gameList
+    .map((game) => {
+      const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
+      const genreText = game.categories.join(" ");
+      const tagMarkup = game.tags
+        .slice(0, 3)
+        .map((tag) => `<span>${tag}</span>`)
+        .join("");
+
+      return `
+        <article
+          class="catalog-row"
+          data-game-item
+          data-title="${game.search}"
+          data-genre="${genreText}"
+        >
+          <div class="catalog-cover">
+            <img
+              class="browser-game-cover browser-game-cover--catalog"
+              src="${game.cover}"
+              alt="${game.title} game cover"
+              width="960"
+              height="540"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="catalog-row-copy">
+            <p class="store-card-platform">Browser · Source embed</p>
+            <h3>${game.title}</h3>
+            <div class="tag-list">${tagMarkup}</div>
+          </div>
+          <p class="catalog-description">${game.tagline}</p>
+          <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
+          <a class="game-card-link" href="${detailUrl}" aria-label="Play ${game.title} online"></a>
+        </article>
+      `;
+    })
+    .join("");
+
+  mountPoint.insertAdjacentHTML("beforebegin", rows);
+  mountPoint.remove();
+})();
+
 /* 关键模块：目录搜索与分类筛选。脚本不存在时，所有游戏仍可正常访问。 */
 (() => {
   const searchInput = document.querySelector("[data-game-search]");
