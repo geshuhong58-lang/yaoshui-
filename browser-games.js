@@ -1,6 +1,25 @@
 /* 关键模块：集中维护已经通过基础可访问性核验的第三方浏览器游戏。 */
 /* 每条记录只允许使用代码内固定的 HTTPS 地址，播放器不会接受用户传入的任意 iframe 地址。 */
-window.OpenNiceBrowserGames = Object.freeze([
+window.OpenNiceBrowserGames = (() => {
+  /* 关键模块：这些游戏固定显示在首页和目录最前面，数组顺序就是展示顺序。 */
+  const prioritySlugs = Object.freeze([
+    "redcoats",
+    "rocketgoal",
+    "paper-io-2",
+    "slice-master",
+    "basketball-stars",
+    "suika-game",
+    "wormate",
+    "war-brokers",
+    "rocket-bot-royale",
+    "eggy-car",
+    "cookie-clicker",
+    "veck"
+  ]);
+  const priorityPositions = new Map(
+    prioritySlugs.map((slug, index) => [slug, index])
+  );
+  const games = [
   {
     slug: "smash-karts",
     rank: "07",
@@ -468,4 +487,23 @@ window.OpenNiceBrowserGames = Object.freeze([
     accent: "#7ecb4b",
     accentAlt: "#ff7e62"
   }
-]);
+  ];
+
+  /* 关键模块：未指定优先级的游戏保持原有相对顺序，并自动生成连续展示编号。 */
+  games.sort((firstGame, secondGame) => {
+    const firstPosition = priorityPositions.get(firstGame.slug);
+    const secondPosition = priorityPositions.get(secondGame.slug);
+    const firstRank = firstPosition ?? Number.POSITIVE_INFINITY;
+    const secondRank = secondPosition ?? Number.POSITIVE_INFINITY;
+    return firstRank - secondRank;
+  });
+
+  return Object.freeze(
+    games.map((game, index) =>
+      Object.freeze({
+        ...game,
+        rank: String(index + 1).padStart(2, "0")
+      })
+    )
+  );
+})();

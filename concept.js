@@ -67,7 +67,8 @@ function renderImportedBrowserGames() {
     })
     .join("");
 
-  gameGrid.insertAdjacentHTML("beforeend", cardMarkup);
+  /* 关键模块：动态游戏位于固定游戏之前，确保策划排序就是用户看到的首屏顺序。 */
+  gameGrid.insertAdjacentHTML("afterbegin", cardMarkup);
 }
 
 renderImportedBrowserGames();

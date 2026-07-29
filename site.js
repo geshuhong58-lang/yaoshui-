@@ -54,7 +54,8 @@
     })
     .join("");
 
-  mountPoint.insertAdjacentHTML("beforebegin", rows);
+  /* 关键模块：完整目录与首页使用同一排序，并放在其他固定条目之前。 */
+  mountPoint.parentElement.insertAdjacentHTML("afterbegin", rows);
   mountPoint.remove();
 })();
 
