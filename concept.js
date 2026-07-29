@@ -14,9 +14,9 @@ function renderImportedBrowserGames() {
       const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
       const categoryText = game.categories.join(" ");
       const cardMeta = game.tags.slice(0, 2).join(" · ");
-      const usesOfficialDestination = game.mode === "external";
-      const badgeLabel = usesOfficialDestination ? "Official page" : "Play now";
-      const hoverLabel = usesOfficialDestination ? "View official option" : "Launch game";
+      const usesTrustedDestination = game.mode === "external";
+      const badgeLabel = usesTrustedDestination ? "Trusted page" : "Play now";
+      const hoverLabel = usesTrustedDestination ? "View game page" : "Launch game";
 
       return `
         <article

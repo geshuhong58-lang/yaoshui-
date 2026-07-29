@@ -10,13 +10,13 @@
     .map((game) => {
       const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
       const genreText = game.categories.join(" ");
-      const usesOfficialDestination = game.mode === "external";
-      const platformLabel = usesOfficialDestination
-        ? "Browser · Official destination"
+      const usesTrustedDestination = game.mode === "external";
+      const platformLabel = usesTrustedDestination
+        ? "Browser · Trusted destination"
         : "Browser · Source embed";
-      const actionLabel = usesOfficialDestination ? "OPEN OFFICIAL" : "PLAY NOW";
-      const actionAriaLabel = usesOfficialDestination
-        ? `View the official ${game.title} destination`
+      const actionLabel = usesTrustedDestination ? "OPEN GAME PAGE" : "PLAY NOW";
+      const actionAriaLabel = usesTrustedDestination
+        ? `View the trusted ${game.title} game page`
         : `Play ${game.title} online`;
       const tagMarkup = game.tags
         .slice(0, 3)

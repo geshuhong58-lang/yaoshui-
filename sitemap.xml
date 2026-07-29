@@ -112,6 +112,41 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://opennice.online/game-player.html?game=cookie-clicker</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=hexanaut</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=eggy-car</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=basketball-stars</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=stickman-hook</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=powerline</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://opennice.online/game-player.html?game=suika-game</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://opennice.online/marvel-rivals.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
