@@ -10,6 +10,14 @@
     .map((game) => {
       const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
       const genreText = game.categories.join(" ");
+      const usesOfficialDestination = game.mode === "external";
+      const platformLabel = usesOfficialDestination
+        ? "Browser · Official destination"
+        : "Browser · Source embed";
+      const actionLabel = usesOfficialDestination ? "OPEN OFFICIAL" : "PLAY NOW";
+      const actionAriaLabel = usesOfficialDestination
+        ? `View the official ${game.title} destination`
+        : `Play ${game.title} online`;
       const tagMarkup = game.tags
         .slice(0, 3)
         .map((tag) => `<span>${tag}</span>`)
@@ -34,13 +42,13 @@
             >
           </div>
           <div class="catalog-row-copy">
-            <p class="store-card-platform">Browser · Source embed</p>
+            <p class="store-card-platform">${platformLabel}</p>
             <h3>${game.title}</h3>
             <div class="tag-list">${tagMarkup}</div>
           </div>
           <p class="catalog-description">${game.tagline}</p>
-          <div class="catalog-action"><small>Free to play</small><strong>PLAY NOW</strong></div>
-          <a class="game-card-link" href="${detailUrl}" aria-label="Play ${game.title} online"></a>
+          <div class="catalog-action"><small>Free to access</small><strong>${actionLabel}</strong></div>
+          <a class="game-card-link" href="${detailUrl}" aria-label="${actionAriaLabel}"></a>
         </article>
       `;
     })

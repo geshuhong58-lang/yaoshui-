@@ -14,6 +14,9 @@ function renderImportedBrowserGames() {
       const detailUrl = `game-player.html?game=${encodeURIComponent(game.slug)}`;
       const categoryText = game.categories.join(" ");
       const cardMeta = game.tags.slice(0, 2).join(" · ");
+      const usesOfficialDestination = game.mode === "external";
+      const badgeLabel = usesOfficialDestination ? "Official page" : "Play now";
+      const hoverLabel = usesOfficialDestination ? "View official option" : "Launch game";
 
       return `
         <article
@@ -46,8 +49,8 @@ function renderImportedBrowserGames() {
               >
             </div>
             <span class="card-rank">${game.rank}</span>
-            <span class="card-badge card-badge--blue">Play now</span>
-            <span class="card-hover-label" aria-hidden="true">Launch game <span>↗</span></span>
+            <span class="card-badge card-badge--blue">${badgeLabel}</span>
+            <span class="card-hover-label" aria-hidden="true">${hoverLabel} <span>↗</span></span>
             <button class="card-save" type="button" aria-label="Save ${game.title}" aria-pressed="false" data-save-game="${game.title}">
               <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2-5.5-2.9-5.5 2.9 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>
             </button>

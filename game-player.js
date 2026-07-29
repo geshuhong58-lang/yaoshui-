@@ -53,12 +53,19 @@ function showUnavailableState() {
 /* 关键模块：只使用内部游戏记录更新页面文本和 SEO，不将查询参数写入 HTML。 */
 function populateGamePage(game) {
   const canonicalUrl = `https://opennice.online/game-player.html?game=${encodeURIComponent(game.slug)}`;
-  const metaDescription = `Play ${game.title} online free in your browser. ${game.tagline}`;
+  const usesOfficialDestination = game.mode === "external";
+  const metaDescription = usesOfficialDestination
+    ? `Explore ${game.title} and continue to its verified official game page. ${game.tagline}`
+    : `Play ${game.title} online free in your browser. ${game.tagline}`;
 
-  document.title = `Play ${game.title} Online Free | OpenNice`;
+  document.title = usesOfficialDestination
+    ? `${game.title} Official Game Destination | OpenNice`
+    : `Play ${game.title} Online Free | OpenNice`;
   document.querySelector("#page-description").content = metaDescription;
   document.querySelector("#page-canonical").href = canonicalUrl;
-  document.querySelector("#og-title").content = `Play ${game.title} Online`;
+  document.querySelector("#og-title").content = usesOfficialDestination
+    ? `${game.title} Official Game Destination`
+    : `Play ${game.title} Online`;
   document.querySelector("#og-description").content = game.tagline;
   document.querySelector("#og-url").content = canonicalUrl;
 
@@ -70,7 +77,9 @@ function populateGamePage(game) {
   gameTags.textContent = game.tags.join(" · ");
   sourceHost.textContent = game.sourceLabel;
   attributionTitle.textContent = game.title;
-  launchTitle.textContent = `Launch ${game.title}.`;
+  launchTitle.textContent = usesOfficialDestination
+    ? `Continue to ${game.title}.`
+    : `Launch ${game.title}.`;
   coverName.textContent = game.title;
   coverType.textContent = game.tags[0];
   playerCoverImage.src = game.cover;
@@ -85,9 +94,17 @@ function populateGamePage(game) {
   document.querySelector("#source-link").textContent = game.sourceLabel;
 
   const isPortraitPhone = window.matchMedia("(max-width: 760px) and (orientation: portrait)").matches;
-  orientationTip.textContent = isPortraitPhone
-    ? "For games with wide controls, rotate your phone after launch."
-    : "The game opens here without leaving OpenNice.";
+  orientationTip.textContent = usesOfficialDestination
+    ? "This title opens on its verified official game page in a new tab."
+    : isPortraitPhone
+      ? "For games with wide controls, rotate your phone after launch."
+      : "The game opens here without leaving OpenNice.";
+
+  if (usesOfficialDestination) {
+    playButton.firstChild.textContent = "Open official page ";
+    playerStatusText.textContent = "Official destination verified";
+    fullscreenButton.hidden = true;
+  }
 
   document.querySelector("#game-schema").textContent = JSON.stringify({
     "@context": "https://schema.org",
@@ -98,12 +115,19 @@ function populateGamePage(game) {
     image: `https://opennice.online/${game.cover}`,
     gamePlatform: "Web browser",
     isAccessibleForFree: true,
-    genre: game.tags
+    genre: game.tags,
+    sameAs: game.source
   });
 }
 
 /* 关键模块：用户主动点击后才创建 iframe，并授予常见网页游戏所需的有限功能权限。 */
 function launchGame(game) {
+  if (game.mode === "external") {
+    window.open(game.source, "_blank", "noopener,noreferrer");
+    playerStatusText.textContent = "Official page opened in a new tab";
+    return;
+  }
+
   if (gameEmbed.querySelector("iframe")) {
     return;
   }
@@ -117,7 +141,12 @@ function launchGame(game) {
   frame.allow = "autoplay; fullscreen; gamepad; payment; screen-wake-lock; clipboard-read; clipboard-write";
   frame.allowFullscreen = true;
 
+  const loadFallbackTimer = window.setTimeout(() => {
+    playerStatusText.textContent = "Game opened from source";
+  }, 6000);
+
   frame.addEventListener("load", () => {
+    window.clearTimeout(loadFallbackTimer);
     playerStatusText.textContent = "Game loaded from source";
   });
 
