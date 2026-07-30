@@ -54,6 +54,7 @@ function showUnavailableState() {
 function populateGamePage(game) {
   const canonicalUrl = `https://opennice.online/game-player.html?game=${encodeURIComponent(game.slug)}`;
   const usesTrustedDestination = game.mode === "external";
+  const attributionUrl = game.sourcePage || game.source;
   const metaDescription = usesTrustedDestination
     ? `Explore ${game.title} and continue to its verified game page. ${game.tagline}`
     : `Play ${game.title} online free in your browser. ${game.tagline}`;
@@ -89,7 +90,7 @@ function populateGamePage(game) {
   favoriteButton.dataset.gameName = game.title;
 
   sourceLinks.forEach((link) => {
-    link.href = game.source;
+    link.href = attributionUrl;
   });
   document.querySelector("#source-link").textContent = game.sourceLabel;
 
@@ -116,7 +117,7 @@ function populateGamePage(game) {
     gamePlatform: "Web browser",
     isAccessibleForFree: true,
     genre: game.tags,
-    sameAs: game.source
+    sameAs: attributionUrl
   });
 }
 
